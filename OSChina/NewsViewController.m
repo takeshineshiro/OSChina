@@ -47,19 +47,19 @@
     self.newsTableView.delegate = self;
     self.newsTableView.dataSource = self;
     [self.view addSubview:_newsTableView];
+    __weak NewsViewController *weakSelf = self;
     [self.newsTableView addPullToRefreshWithActionHandler:^{
-        
+        [weakSelf requestCurrentNewsData:YES isMore:NO PageIndex:-1];
     }];
     NSArray *newsArray= [NewsObject allDbObjects];
     if ([newsArray count]>0) {
         [self.newsArray addObjectsFromArray:newsArray];
         [_newsTableView reloadData];
     }
-    __weak NewsViewController *weakSelf = self;
     [self.newsTableView addInfiniteScrollingWithActionHandler:^{
         [weakSelf requestCurrentNewsData:NO isMore:YES PageIndex:weakSelf.currIndex];
     }];
-   [self requestCurrentNewsData:NO isMore:NO PageIndex:_currIndex];
+    [self requestCurrentNewsData:NO isMore:NO PageIndex:_currIndex];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -69,18 +69,19 @@
 -(void) requestCurrentNewsData:(BOOL)refresh isMore:(BOOL) more PageIndex:(NSInteger) pageIndex{
     __weak NewsViewController *weakSelf = self;
     [[OSAPIClient shareClient] getNewslistWithPageIndex:pageIndex RequestResult:^(id resultDatas, NSError *error) {
-        NSArray *currData = resultDatas;
+        if ([resultDatas isKindOfClass:[NSArray class]]) {
         if (refresh) {
-
+            [weakSelf.newsTableView.pullToRefreshView stopAnimating];
         }
-        _currIndex ++;
-        if (pageIndex == 0 &&[self.newsArray count]) {
+        if (pageIndex == 0 ) {
             [self.newsArray removeAllObjects];
         }
-        [self.newsArray addObjectsFromArray:resultDatas];
-        [_newsTableView reloadData];
         if (more) {
+            _currIndex ++;
             [weakSelf.newsTableView.infiniteScrollingView stopAnimating];
+            [weakSelf.newsArray addObjectsFromArray:resultDatas];
+            [_newsTableView reloadData];
+        }
         }
     }];
     
