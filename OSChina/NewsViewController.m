@@ -49,7 +49,7 @@
     [self.view addSubview:_newsTableView];
     __weak NewsViewController *weakSelf = self;
     [self.newsTableView addPullToRefreshWithActionHandler:^{
-        [weakSelf requestCurrentNewsData:YES isMore:NO PageIndex:-1];
+         [weakSelf requestCurrentNewsData:YES isMore:NO PageIndex:-1];
     }];
     NSArray *newsArray= [NewsObject allDbObjects];
     if ([newsArray count]>0) {
@@ -76,11 +76,11 @@
         if (pageIndex == 0 ) {
             [self.newsArray removeAllObjects];
         }
+            [weakSelf.newsArray addObjectsFromArray:resultDatas];
+            [_newsTableView reloadData];
         if (more) {
             _currIndex ++;
             [weakSelf.newsTableView.infiniteScrollingView stopAnimating];
-            [weakSelf.newsArray addObjectsFromArray:resultDatas];
-            [_newsTableView reloadData];
         }
         }
     }];

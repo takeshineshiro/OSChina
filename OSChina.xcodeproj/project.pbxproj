@@ -47,6 +47,8 @@
 		C27470A318D8AB3B009E9C24 /* STDbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C274709F18D8AB3B009E9C24 /* STDbObject.m */; };
 		C27470A518D8AB46009E9C24 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C27470A418D8AB46009E9C24 /* libsqlite3.dylib */; };
 		C27470AC18D8AD74009E9C24 /* NewsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C27470AB18D8AD74009E9C24 /* NewsObject.m */; };
+		C27F621C18D9DA6E00DD251E /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = C27F621918D9DA6E00DD251E /* UIScrollView+SVInfiniteScrolling.m */; };
+		C27F621D18D9DA6E00DD251E /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = C27F621B18D9DA6E00DD251E /* UIScrollView+SVPullToRefresh.m */; };
 		C27FAA1718BF43F0000AB671 /* NSString+HtmlString.m in Sources */ = {isa = PBXBuildFile; fileRef = C27FAA1618BF43F0000AB671 /* NSString+HtmlString.m */; };
 		C27FAA2118BF4C4E000AB671 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = C27FAA1D18BF4C4E000AB671 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C27FAA2218BF4C4E000AB671 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C27FAA2018BF4C4E000AB671 /* RTLabel.m */; };
@@ -96,8 +98,6 @@
 		C2F51235188ED4E80048AE7F /* Sidebarbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F51234188ED4E80048AE7F /* Sidebarbg@2x.png */; };
 		C2F51238188EE1480048AE7F /* Navibarbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F51237188EE1480048AE7F /* Navibarbg@2x.png */; };
 		C2FED28718AA0AB0003D5854 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FED28618AA0AB0003D5854 /* News.m */; };
-		C2FED28E18AA29CC003D5854 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FED28B18AA29CC003D5854 /* UIScrollView+SVInfiniteScrolling.m */; };
-		C2FED28F18AA29CC003D5854 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FED28D18AA29CC003D5854 /* UIScrollView+SVPullToRefresh.m */; };
 		C2FED29418AA3419003D5854 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FED29318AA3419003D5854 /* UIView+Extension.m */; };
 		C2FED29818AA7196003D5854 /* NSArray+BxExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FED29718AA7196003D5854 /* NSArray+BxExtension.m */; };
 		C2FED2A318AA75A2003D5854 /* FoundationExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FED2A218AA75A2003D5854 /* FoundationExtension.m */; };
@@ -192,6 +192,11 @@
 		C27470A418D8AB46009E9C24 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C27470AA18D8AD74009E9C24 /* NewsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsObject.h; sourceTree = "<group>"; };
 		C27470AB18D8AD74009E9C24 /* NewsObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsObject.m; sourceTree = "<group>"; };
+		C27F621718D9DA6E00DD251E /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		C27F621818D9DA6E00DD251E /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		C27F621918D9DA6E00DD251E /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		C27F621A18D9DA6E00DD251E /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		C27F621B18D9DA6E00DD251E /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		C27FAA1518BF43F0000AB671 /* NSString+HtmlString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HtmlString.h"; sourceTree = "<group>"; };
 		C27FAA1618BF43F0000AB671 /* NSString+HtmlString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HtmlString.m"; sourceTree = "<group>"; };
 		C27FAA1C18BF4C4E000AB671 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
@@ -272,11 +277,6 @@
 		C2F51237188EE1480048AE7F /* Navibarbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Navibarbg@2x.png"; sourceTree = "<group>"; };
 		C2FED28518AA0AB0003D5854 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		C2FED28618AA0AB0003D5854 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
-		C2FED28918AA29CC003D5854 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
-		C2FED28A18AA29CC003D5854 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
-		C2FED28B18AA29CC003D5854 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
-		C2FED28C18AA29CC003D5854 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
-		C2FED28D18AA29CC003D5854 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		C2FED29218AA3419003D5854 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		C2FED29318AA3419003D5854 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		C2FED29618AA7196003D5854 /* NSArray+BxExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BxExtension.h"; sourceTree = "<group>"; };
@@ -450,6 +450,18 @@
 				C27470AB18D8AD74009E9C24 /* NewsObject.m */,
 			);
 			name = Store;
+			sourceTree = "<group>";
+		};
+		C27F621618D9DA6E00DD251E /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				C27F621718D9DA6E00DD251E /* SVPullToRefresh.h */,
+				C27F621818D9DA6E00DD251E /* UIScrollView+SVInfiniteScrolling.h */,
+				C27F621918D9DA6E00DD251E /* UIScrollView+SVInfiniteScrolling.m */,
+				C27F621A18D9DA6E00DD251E /* UIScrollView+SVPullToRefresh.h */,
+				C27F621B18D9DA6E00DD251E /* UIScrollView+SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 		C27FAA1B18BF4C4E000AB671 /* RegexKitLite */ = {
@@ -733,6 +745,7 @@
 		C2F5121C188EC7AD0048AE7F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				C27F621618D9DA6E00DD251E /* SVPullToRefresh */,
 				18049E6118D98EF500D89735 /* SegmentedControl */,
 				C274709818D8AB3B009E9C24 /* STDb */,
 				C2524FAC18D84583005DECE4 /* FTCoreText */,
@@ -740,7 +753,6 @@
 				C27FAA1B18BF4C4E000AB671 /* RegexKitLite */,
 				C27FAA1E18BF4C4E000AB671 /* RTLabel */,
 				C2905AD018B3036200F970BB /* CMDataStorage */,
-				C2FED28818AA29CC003D5854 /* SVPullToRefresh */,
 				C25FF3001890103100D34053 /* AFNetworking */,
 			);
 			name = Vendor;
@@ -772,18 +784,6 @@
 				C2E8C9A418AD1BFD0011B5C4 /* NewsDetailViewController.m */,
 			);
 			name = News;
-			sourceTree = "<group>";
-		};
-		C2FED28818AA29CC003D5854 /* SVPullToRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				C2FED28918AA29CC003D5854 /* SVPullToRefresh.h */,
-				C2FED28A18AA29CC003D5854 /* UIScrollView+SVInfiniteScrolling.h */,
-				C2FED28B18AA29CC003D5854 /* UIScrollView+SVInfiniteScrolling.m */,
-				C2FED28C18AA29CC003D5854 /* UIScrollView+SVPullToRefresh.h */,
-				C2FED28D18AA29CC003D5854 /* UIScrollView+SVPullToRefresh.m */,
-			);
-			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 		C2FED29018AA3378003D5854 /* Category */ = {
@@ -960,7 +960,6 @@
 				C27470AC18D8AD74009E9C24 /* NewsObject.m in Sources */,
 				C2E3F06F187C4B0800919AE6 /* AppDelegate.m in Sources */,
 				C25FF3171890103100D34053 /* AFJSONRequestOperation.m in Sources */,
-				C2FED28E18AA29CC003D5854 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				C2E3F06B187C4B0800919AE6 /* main.m in Sources */,
 				C2E5733618C06C5E00B7D703 /* LoadMoreFootView.m in Sources */,
 				18049E6418D98EF500D89735 /* HMSegmentedControl.m in Sources */,
@@ -988,6 +987,7 @@
 				C2E8C9A818AD287A0011B5C4 /* BlogDetailViewController.m in Sources */,
 				C27470A318D8AB3B009E9C24 /* STDbObject.m in Sources */,
 				C2F5122A188ED0540048AE7F /* LeftMenuViewController.m in Sources */,
+				C27F621D18D9DA6E00DD251E /* UIScrollView+SVPullToRefresh.m in Sources */,
 				C27FAA2118BF4C4E000AB671 /* RegexKitLite.m in Sources */,
 				C250EDB418ABC4D800A6E20F /* BlogViewController.m in Sources */,
 				C2F51223188ECBA50048AE7F /* SidebarAnimation.m in Sources */,
@@ -1000,10 +1000,10 @@
 				C2EBD45618B06C1C004ECC94 /* CommunityViewController.m in Sources */,
 				C2FED2AA18AA7F50003D5854 /* NSDate+BxExtension.m in Sources */,
 				C2BD789318AFC7F3007482C7 /* AppCache.m in Sources */,
-				C2FED28F18AA29CC003D5854 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				C25FF3151890103100D34053 /* AFHTTPRequestOperation.m in Sources */,
 				C27FAA2218BF4C4E000AB671 /* RTLabel.m in Sources */,
 				C2E5733318C036FB00B7D703 /* NSDate+TimeAgo.m in Sources */,
+				C27F621C18D9DA6E00DD251E /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				C2FED28718AA0AB0003D5854 /* News.m in Sources */,
 				C2FED29818AA7196003D5854 /* NSArray+BxExtension.m in Sources */,
 				C25FF31B1890103100D34053 /* AFXMLRequestOperation.m in Sources */,
