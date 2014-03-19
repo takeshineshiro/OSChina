@@ -60,10 +60,11 @@
     _tweetTableView.dataSource = self;
     _tweetTableView.delegate = self;
     _tweetTableView.backgroundColor = [UIColor clearColor];
+    _tweetTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tweetTableView];
-    _refreshTableHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, 0-self.view.height+60, self.view.width, self.view.height-60)];
-    _refreshTableHeaderView.delegate = self;
-    [_tweetTableView addSubview:_refreshTableHeaderView];
+//    _refreshTableHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, 0-self.view.height+60, self.view.width, self.view.height-60)];
+//    _refreshTableHeaderView.delegate = self;
+//    [_tweetTableView addSubview:_refreshTableHeaderView];
     
 }
 
@@ -102,32 +103,41 @@
     }
 }
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    double result = 0;
+    CGFloat result = 0;
     if (_currSelectIndex == 0) {
         Tweet *tweet= _latestTweetsArray[indexPath.row];
         result= [TweetCell getCurrTweetCellHright:tweet];
+        return result;
     }
     if (_currSelectIndex == 1) {
         Tweet *tweet= _hotTweetsArray[indexPath.row];
         result= [TweetCell getCurrTweetCellHright:tweet];
+        return result;
     }
-     return result;
+     return 0;
 }
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-     static NSString * cellIdentifier= @"cellName";
-     TweetCell *cell= [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-         cell= [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
+    static NSString * newCellIdentifier= @"newCellIdentifier";
+    static NSString * hotCellIdentifier= @"hotCellIdentifier";
     if (_currSelectIndex == 0) {
+        TweetCell *cell= [tableView dequeueReusableCellWithIdentifier:newCellIdentifier];
+        if (!cell) {
+            cell= [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:newCellIdentifier];
+        }
         Tweet *tweet= _latestTweetsArray[indexPath.row];
         cell.tweet = tweet;
+        return cell;
     }
     if (_currSelectIndex == 1) {
+        TweetCell *cell= [tableView dequeueReusableCellWithIdentifier:hotCellIdentifier];
+        if (!cell) {
+            cell= [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:hotCellIdentifier];
+        }
         Tweet *tweet= _hotTweetsArray[indexPath.row];
         cell.tweet = tweet;
+         return cell;
     }
-    return cell;
+    return nil;
 }
 - (void)segmentedControlIndexChanged:(id)sender{
     SliderSwitch * segement  = (SliderSwitch*)sender;
@@ -144,20 +154,20 @@
 #pragma mark -
 #pragma mark Data Source Loading / Reloading Methods
 
-- (void)reloadTableViewDataSource{
-	
-	_reloading = YES;
-	
-}
-
-- (void)doneLoadingTableViewData{
-	
-	_reloading = NO;
-	[_refreshTableHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tweetTableView];
-	
-}
-
-
+//- (void)reloadTableViewDataSource{
+//	
+//	_reloading = YES;
+//	
+//}
+//
+//- (void)doneLoadingTableViewData{
+//	
+//	_reloading = NO;
+//	[_refreshTableHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tweetTableView];
+//	
+//}
+//
+//
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods
 
@@ -198,24 +208,24 @@
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
 
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
-	
-	[self reloadTableViewDataSource];
-	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
-	
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
-	
-	return _reloading;
-	
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
-	
-	return [NSDate date];
-	
-}
+//- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+//	
+//	[self reloadTableViewDataSource];
+//	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+//	
+//}
+//
+//- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+//	
+//	return _reloading;
+//	
+//}
+//
+//- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+//	
+//	return [NSDate date];
+//	
+//}
 
 - (void)didReceiveMemoryWarning
 {

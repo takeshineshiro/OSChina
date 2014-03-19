@@ -8,58 +8,66 @@
 
 #import "NewsCell.h"
 
-@interface NewsCell()
 
-@property (nonatomic, strong) UILabel *titleLable;
-@property (nonatomic, strong) UILabel *createdLabel;
-@property (nonatomic, strong) UILabel *repliesCountLabel;
-@end
-@implementation NewsCell
+@implementation NewsCell{
+
+    UIImageView *separLine;
+    UILabel *titleLable;
+    UILabel *createdLabel;
+    UILabel *repliesCountLabel;
+    UIImageView *feedBack;
+}
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
         
-        self.titleLable = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, self.width-40, 20)];
-        self.titleLable.font = [UIFont boldSystemFontOfSize:15];
-        self.titleLable.backgroundColor = [UIColor clearColor];
-        self.titleLable.textColor = [UIColor blackColor];
-        [self.contentView addSubview:self.titleLable];
-        
-        self.createdLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLable.left, self.titleLable.bottom+10, 200, 20)];
-        self.createdLabel.font = [UIFont systemFontOfSize:15.f];
-        self.createdLabel.backgroundColor = [UIColor clearColor];
-        self.createdLabel.textColor = [UIColor blackColor];
-        
-        [self.contentView addSubview:self.createdLabel];
-        self.repliesCountLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        self.repliesCountLabel.font = [UIFont systemFontOfSize:15.f];
-        self.repliesCountLabel.backgroundColor = [UIColor clearColor];
-        self.repliesCountLabel.textColor = [UIColor whiteColor];
-        self.repliesCountLabel.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:self.repliesCountLabel];
+        titleLable = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 40)];
+        titleLable.font = [UIFont boldSystemFontOfSize:16];
+        titleLable.backgroundColor = [UIColor clearColor];
+        titleLable.textColor = [UIColor blackColor];
+        [self.contentView addSubview:titleLable];
+        separLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, 320, 0.5)];
+        separLine.image = [[UIImage imageNamed:@"separateLine"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+        [self.contentView addSubview:separLine];
+        createdLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLable.left, separLine.bottom+5, 200, 20)];
+        createdLabel.font = [UIFont systemFontOfSize:14.f];
+        createdLabel.backgroundColor = [UIColor clearColor];
+        createdLabel.textColor = [UIColor blackColor];
+        [self.contentView addSubview:createdLabel];
+       
+        feedBack = [[UIImageView alloc] initWithFrame:CGRectMake(250, separLine.bottom+5, 17, 15)];
+        feedBack.image = [UIImage imageNamed:@"icon_feedback"];
+        [self.contentView addSubview:feedBack];
+        repliesCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(feedBack.right+5, separLine.bottom+5, 40, 20)];
+        repliesCountLabel.font = [UIFont systemFontOfSize:14.f];
+        repliesCountLabel.backgroundColor = [UIColor clearColor];
+        repliesCountLabel.textColor = RGB(74, 171, 218);
+        repliesCountLabel.textAlignment = NSTextAlignmentLeft;
+        [self.contentView addSubview:repliesCountLabel];
     }
     return self;
 }
 
 -(void)layoutSubviews{
 
-    //self.titleLable.frame = CGRectMake(20, 10, self.width-40, 20);
-    self.titleLable.text =_news.title;
-    //self.createdLabel.frame = CGRectMake(self.titleLable.left, self.titleLable.bottom+10, 200, 20);
-    self.createdLabel.text = [NSString stringWithFormat:@"%@发表于%@",_news.author,[_news.pubDate intervalSinceNow]];
-
+   
+    titleLable.text =_news.title;
+    createdLabel.text = [NSString stringWithFormat:@"%@发表于%@",_news.author,[_news.pubDate intervalSinceNow]];
+    repliesCountLabel.text =_news.commentCount ;
 }
--(void) setsContent:(NewsObject *)news{
+//-(void)setFrame:(CGRect)frame
+//
+//{
+//    //frame.origin.y -= 30;
+//    frame.origin.x += 5;
+//    frame.size.width -= 10;
+//    [super setFrame:frame];
+//
+//}
 
-    //self.titleLable.frame = CGRectMake(20, 10, self.width-40, 20);
-    self.titleLable.text =_news.title;
-    //self.createdLabel.frame = CGRectMake(self.titleLable.left, self.titleLable.bottom+10, 200, 20);
-    self.createdLabel.text = [NSString stringWithFormat:@"%@发表于%@",_news.author,[_news.pubDate intervalSinceNow]];
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

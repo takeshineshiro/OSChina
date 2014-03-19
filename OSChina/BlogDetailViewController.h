@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface BlogDetailViewController : UIViewController
+#import "BaseViewController.h"
+@interface BlogDetailViewController :BaseViewController
 
 @property (nonatomic,strong) NSString *blogID;
 @end

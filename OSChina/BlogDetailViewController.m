@@ -27,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setTitle:@"博客详情"];
+    [self setBackbuttonItemStyle];
     _blogDetailWebView  = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height-60)];
     [self.view addSubview:_blogDetailWebView];
     __weak BlogDetailViewController *weakSelf = self;

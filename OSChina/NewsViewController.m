@@ -42,11 +42,12 @@
 
 -(void) initNewsTableView{
 
-    self.newsTableView =[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) style:UITableViewStylePlain];
+    self.newsTableView =[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) style:UITableViewStyleGrouped];
     
     self.newsTableView.delegate = self;
     self.newsTableView.dataSource = self;
     [self.view addSubview:_newsTableView];
+    _newsTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     __weak NewsViewController *weakSelf = self;
     [self.newsTableView addPullToRefreshWithActionHandler:^{
          [weakSelf requestCurrentNewsData:YES isMore:NO PageIndex:0];
@@ -87,33 +88,49 @@
     }];
     
 }
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section ==0) {
+        return 0.001;
+    }
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+   
+        return 0.001;
+  
+}
 #pragma mark UITableViewDataSource deleget
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
      static NSString * cellName  = @"newsCell";
      NewsCell *cell= [tableView dequeueReusableCellWithIdentifier:cellName];
     if (!cell) {
          cell =[[NewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
-        
     }
-    NewsObject *news= _newsArray[indexPath.row];
+    NewsObject *news= _newsArray[indexPath.section];
     cell.news =news;
     //[cell setsContent:news];
     return cell;
 }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;{
+      return [_newsArray count];
 
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
    
-    return [_newsArray count];
+    return 1;
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 69;
+    return 75;
 
 }
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
      NewsDetailViewController *newsDetail= [[NewsDetailViewController alloc] init];
-      NewsObject *currNews = [_newsArray objectAtIndexOrNil:indexPath.row];
+      NewsObject *currNews = [_newsArray objectAtIndexOrNil:indexPath.section];
      newsDetail.newsID = currNews.newsid;
     [self.navigationController pushViewController:newsDetail animated:YES];
 }

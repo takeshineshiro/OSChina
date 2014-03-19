@@ -58,9 +58,13 @@
  */
 -(void) setBackbuttonItemStyle{
     UIButton *backBtn= [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame =CGRectMake(0, 0, 40, 44);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+    backBtn.frame =CGRectMake(0, 0, 60, 44);
+    backBtn.titleLabel.font = [UIFont systemFontOfSize:17.0f];
     [backBtn addTarget:self action:@selector(popCurrViewController) forControlEvents:UIControlEventTouchUpInside];
+    [backBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
+     [backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+    [backBtn setAdjustsImageWhenHighlighted:NO];
     [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [backBtn  setTitle:@"返回" forState:UIControlStateNormal];
     UIBarButtonItem *backItem= [[UIBarButtonItem alloc] initWithCustomView:backBtn];
