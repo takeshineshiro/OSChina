@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18049E6418D98EF500D89735 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18049E6318D98EF500D89735 /* HMSegmentedControl.m */; };
 		C2394B5218A93380006B9C59 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C2394B5118A93380006B9C59 /* XMLParser.m */; };
 		C23EBF4D1892D27700793896 /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23EBF4C1892D27700793896 /* TweetViewController.m */; };
 		C23EBF4F1892DC5700793896 /* IconHome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C23EBF4E1892DC5700793896 /* IconHome@2x.png */; };
@@ -78,10 +79,7 @@
 		C2E8C9AB18AD28BB0011B5C4 /* NewsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E8C9AA18AD28BB0011B5C4 /* NewsDetail.m */; };
 		C2E8C9B118AD31EF0011B5C4 /* BaseMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E8C9B018AD31EF0011B5C4 /* BaseMainViewController.m */; };
 		C2EBD45618B06C1C004ECC94 /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBD45518B06C1C004ECC94 /* CommunityViewController.m */; };
-		C2EBD45A18B0B9A0004ECC94 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBD45918B0B9A0004ECC94 /* HMSegmentedControl.m */; };
 		C2EBD45C18B0B9C4004ECC94 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EBD45B18B0B9C4004ECC94 /* QuartzCore.framework */; };
-		C2EBD46418B0F808004ECC94 /* URBSegmentedControl.h in Sources */ = {isa = PBXBuildFile; fileRef = C2EBD46218B0F808004ECC94 /* URBSegmentedControl.h */; };
-		C2EBD46518B0F808004ECC94 /* URBSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBD46318B0F808004ECC94 /* URBSegmentedControl.m */; };
 		C2EBD46818B1094C004ECC94 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBD46718B1094C004ECC94 /* Post.m */; };
 		C2EBD46B18B111D3004ECC94 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBD46A18B111D3004ECC94 /* PostCell.m */; };
 		C2EBD46D18B11DF8004ECC94 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EBD46C18B11DF8004ECC94 /* Icon@2x.png */; };
@@ -118,6 +116,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18049E6218D98EF500D89735 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		18049E6318D98EF500D89735 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		C2394B5018A93380006B9C59 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		C2394B5118A93380006B9C59 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		C23EBF4B1892D27700793896 /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
@@ -245,11 +245,7 @@
 		C2E8C9B018AD31EF0011B5C4 /* BaseMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMainViewController.m; sourceTree = "<group>"; };
 		C2EBD45418B06C1C004ECC94 /* CommunityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunityViewController.h; sourceTree = "<group>"; };
 		C2EBD45518B06C1C004ECC94 /* CommunityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityViewController.m; sourceTree = "<group>"; };
-		C2EBD45818B0B9A0004ECC94 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
-		C2EBD45918B0B9A0004ECC94 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		C2EBD45B18B0B9C4004ECC94 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C2EBD46218B0F808004ECC94 /* URBSegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = URBSegmentedControl.h; path = ../../URBSegmentedControl.h; sourceTree = "<group>"; };
-		C2EBD46318B0F808004ECC94 /* URBSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = URBSegmentedControl.m; path = ../../URBSegmentedControl.m; sourceTree = "<group>"; };
 		C2EBD46618B1094C004ECC94 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		C2EBD46718B1094C004ECC94 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		C2EBD46918B111D3004ECC94 /* PostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
@@ -321,6 +317,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18049E6118D98EF500D89735 /* SegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				18049E6218D98EF500D89735 /* HMSegmentedControl.h */,
+				18049E6318D98EF500D89735 /* HMSegmentedControl.m */,
+			);
+			path = SegmentedControl;
+			sourceTree = "<group>";
+		};
 		C2394B4E18A932DD006B9C59 /* Utiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,18 +617,6 @@
 			name = Community;
 			sourceTree = "<group>";
 		};
-		C2EBD45718B0B9A0004ECC94 /* SegmentedControl */ = {
-			isa = PBXGroup;
-			children = (
-				C2EBD46218B0F808004ECC94 /* URBSegmentedControl.h */,
-				C2EBD46318B0F808004ECC94 /* URBSegmentedControl.m */,
-				C2EBD45818B0B9A0004ECC94 /* HMSegmentedControl.h */,
-				C2EBD45918B0B9A0004ECC94 /* HMSegmentedControl.m */,
-			);
-			name = SegmentedControl;
-			path = HMSegmentedControl;
-			sourceTree = "<group>";
-		};
 		C2EBD45D18B0BBBD004ECC94 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,13 +740,13 @@
 		C2F5121C188EC7AD0048AE7F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				18049E6118D98EF500D89735 /* SegmentedControl */,
 				C274709818D8AB3B009E9C24 /* STDb */,
 				C2524FAC18D84583005DECE4 /* FTCoreText */,
 				C2E5732A18C0366500B7D703 /* RefreshTableHeaderView */,
 				C27FAA1B18BF4C4E000AB671 /* RegexKitLite */,
 				C27FAA1E18BF4C4E000AB671 /* RTLabel */,
 				C2905AD018B3036200F970BB /* CMDataStorage */,
-				C2EBD45718B0B9A0004ECC94 /* SegmentedControl */,
 				C2FED28818AA29CC003D5854 /* SVPullToRefresh */,
 				C25FF3001890103100D34053 /* AFNetworking */,
 			);
@@ -955,8 +948,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2EBD47F18B13019004ECC94 /* SliderSwitch.m in Sources */,
-				C2EBD46418B0F808004ECC94 /* URBSegmentedControl.h in Sources */,
-				C2EBD46518B0F808004ECC94 /* URBSegmentedControl.m in Sources */,
 				C25FF31A1890103100D34053 /* AFURLConnectionOperation.m in Sources */,
 				C25FF3161890103100D34053 /* AFImageRequestOperation.m in Sources */,
 				C2524FB118D84583005DECE4 /* FTCoreTextStyle.m in Sources */,
@@ -981,6 +972,7 @@
 				C2FED28E18AA29CC003D5854 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				C2E3F06B187C4B0800919AE6 /* main.m in Sources */,
 				C2E5733618C06C5E00B7D703 /* LoadMoreFootView.m in Sources */,
+				18049E6418D98EF500D89735 /* HMSegmentedControl.m in Sources */,
 				C2394B5218A93380006B9C59 /* XMLParser.m in Sources */,
 				C2FED2A718AA7C0D003D5854 /* NewsCell.m in Sources */,
 				C2FED29418AA3419003D5854 /* UIView+Extension.m in Sources */,
@@ -992,7 +984,6 @@
 				C23EBF4D1892D27700793896 /* TweetViewController.m in Sources */,
 				C250EDA718AB6B4900A6E20F /* NSUserDefaults+BxTension.m in Sources */,
 				C27FAA2518BF945E000AB671 /* TweetCell.m in Sources */,
-				C2EBD45A18B0B9A0004ECC94 /* HMSegmentedControl.m in Sources */,
 				C25FF3191890103100D34053 /* AFPropertyListRequestOperation.m in Sources */,
 				C27470A118D8AB3B009E9C24 /* STDb.m in Sources */,
 				C2F5122D188ED0990048AE7F /* RightSettingViewController.m in Sources */,

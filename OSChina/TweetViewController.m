@@ -7,7 +7,6 @@
 //
 
 #import "TweetViewController.h"
-#import "URBSegmentedControl.h"
 #import "SliderSwitch.h"
 #import "Tweet.h"
 #import "TweetCell.h"
