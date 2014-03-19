@@ -42,14 +42,14 @@
 
 -(void) initNewsTableView{
 
-    self.newsTableView =[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height-30) style:UITableViewStylePlain];
+    self.newsTableView =[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) style:UITableViewStylePlain];
     
     self.newsTableView.delegate = self;
     self.newsTableView.dataSource = self;
     [self.view addSubview:_newsTableView];
     __weak NewsViewController *weakSelf = self;
     [self.newsTableView addPullToRefreshWithActionHandler:^{
-         [weakSelf requestCurrentNewsData:YES isMore:NO PageIndex:-1];
+         [weakSelf requestCurrentNewsData:YES isMore:NO PageIndex:0];
     }];
     NSArray *newsArray= [NewsObject allDbObjects];
     if ([newsArray count]>0) {
@@ -69,10 +69,8 @@
 -(void) requestCurrentNewsData:(BOOL)refresh isMore:(BOOL) more PageIndex:(NSInteger) pageIndex{
     __weak NewsViewController *weakSelf = self;
     [[OSAPIClient shareClient] getNewslistWithPageIndex:pageIndex RequestResult:^(id resultDatas, NSError *error) {
+       
         if ([resultDatas isKindOfClass:[NSArray class]]) {
-        if (refresh) {
-            [weakSelf.newsTableView.pullToRefreshView stopAnimating];
-        }
         if (pageIndex == 0 ) {
             [self.newsArray removeAllObjects];
         }
@@ -82,6 +80,9 @@
             _currIndex ++;
             [weakSelf.newsTableView.infiniteScrollingView stopAnimating];
         }
+            if (refresh) {
+                [weakSelf.newsTableView.pullToRefreshView stopAnimating];
+            }
         }
     }];
     

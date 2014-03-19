@@ -30,7 +30,6 @@
 -(void)viewDidLoad{
     
      self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Sidebarbg"]];
-     //self.view.backgroundColor = [UIColor clearColor];
      UIImage *bg =[UIImage imageNamed:@"Sidebarbg"];
      UIImageView *bgImage= [[UIImageView alloc ] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
      bgImage.image = bg;
@@ -41,10 +40,10 @@
      MemuTable.dataSource = self;
      MemuTable.separatorStyle = UITableViewCellSeparatorStyleNone;
      MemuTable.opaque = NO;
-    
+    MemuTable.scrollEnabled  = NO;
      MemuTable.backgroundView = nil;
      MemuTable.backgroundColor = [UIColor clearColor];
-    [MemuTable addCenterMotionEffectsXYWithOffset:30];
+     [MemuTable addCenterMotionEffectsXYWithOffset:30];
      [self.view addSubview:MemuTable];
      _menuIcons  =@[@"IconHome.png",@"IconCalendar.png",@"IconProfile.png",@"IconProfile.png",@"IconSettings.png"];
      _menuTitles = @[@"资讯",@"博客",@"讨论",@"动弹",@"软件"];
