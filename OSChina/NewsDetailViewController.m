@@ -31,7 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"资讯详情";
+    //self.title = @"资讯详情";
+    [self setTitle:@"咨询详情"];
+    [self setBackbuttonItemStyle];
      _newsDetailWebView  = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height-60)];
     [self.view addSubview:_newsDetailWebView];
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self
@@ -39,17 +41,7 @@
     //[recognizer delaysTouchesBegan];
     recognizer.delegate = self;
     [self.view addGestureRecognizer:recognizer];
-//	self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-//	self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    
-//    //  Create FTCoreTextView. Everything will be rendered within this view
-//    CGRect bounds = self.view.bounds;
-//
-//    self.coreTextView = [[FTCoreTextView alloc] initWithFrame:CGRectInset(bounds, 20.0f, 0)];
-//	self.coreTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    
-//    [self.scrollView addSubview:self.coreTextView];
-//    [self.view addSubview:self.scrollView];
+
 }
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
@@ -62,24 +54,7 @@
         BaseNavigationController *base = (BaseNavigationController*)self.navigationController;
         [base paningGestureReceive:recoginzer];
     }
-//     CGPoint velocity = [recoginzer velocityInView:self.view];
-//    switch (recoginzer.state) {
-//        case UIGestureRecognizerStateBegan: {
-//            break;
-//        }
-//        case UIGestureRecognizerStateChanged: {
-//            break;
-//        }
-//        case UIGestureRecognizerStateEnded:
-//        case UIGestureRecognizerStateCancelled: {
-//            if (velocity.x>0) {
-//               
-//                //[self.navigationController popViewControllerAnimated:YES];
-//            }
-//           
-//            break;
-//        }
-//    }
+
 
 }
 

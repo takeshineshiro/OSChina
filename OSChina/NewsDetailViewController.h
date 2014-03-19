@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BaseViewController.h"
 
 
 /* 资讯详情页面
 */
-@interface NewsDetailViewController : UIViewController
+@interface NewsDetailViewController : BaseViewController
 
 @property (nonatomic ,strong) NSString *newsID;
 @end

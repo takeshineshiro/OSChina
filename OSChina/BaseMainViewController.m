@@ -71,15 +71,15 @@
 }
 - (void)setTitle:(NSString *)title
 {
-    //注意必须先定义 leftBarButtonItem和rightBarButtonItem的位置
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = title;
-    titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.navigationItem.titleView = titleLabel;
+    CGSize requestedTitleSize =[title sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:18.0f]}];
+    CGFloat titleWidth = MIN(280, requestedTitleSize.width);
+    UILabel *navLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleWidth, 20)];
+    navLabel.backgroundColor = [UIColor clearColor];
+    navLabel.textColor = [UIColor whiteColor];
+    navLabel.font = [UIFont systemFontOfSize:18.0f];
+    navLabel.textAlignment = NSTextAlignmentCenter;
+    navLabel.text = title;
+    self.navigationItem.titleView = navLabel;
 }
 - (void)tapRecognized:(UITapGestureRecognizer*)recognizer
 {

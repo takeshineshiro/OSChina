@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		18049E6418D98EF500D89735 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18049E6318D98EF500D89735 /* HMSegmentedControl.m */; };
+		18049E6718D9951700D89735 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18049E6618D9951700D89735 /* BaseViewController.m */; };
 		C2394B5218A93380006B9C59 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C2394B5118A93380006B9C59 /* XMLParser.m */; };
 		C23EBF4D1892D27700793896 /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23EBF4C1892D27700793896 /* TweetViewController.m */; };
 		C23EBF4F1892DC5700793896 /* IconHome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C23EBF4E1892DC5700793896 /* IconHome@2x.png */; };
@@ -45,7 +46,6 @@
 		C27470A218D8AB3B009E9C24 /* STDbHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = C274709C18D8AB3B009E9C24 /* STDbHandle.m */; };
 		C27470A318D8AB3B009E9C24 /* STDbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C274709F18D8AB3B009E9C24 /* STDbObject.m */; };
 		C27470A518D8AB46009E9C24 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C27470A418D8AB46009E9C24 /* libsqlite3.dylib */; };
-		C27470A918D8AD3E009E9C24 /* NewsList.m in Sources */ = {isa = PBXBuildFile; fileRef = C27470A818D8AD3E009E9C24 /* NewsList.m */; };
 		C27470AC18D8AD74009E9C24 /* NewsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C27470AB18D8AD74009E9C24 /* NewsObject.m */; };
 		C27FAA1718BF43F0000AB671 /* NSString+HtmlString.m in Sources */ = {isa = PBXBuildFile; fileRef = C27FAA1618BF43F0000AB671 /* NSString+HtmlString.m */; };
 		C27FAA2118BF4C4E000AB671 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = C27FAA1D18BF4C4E000AB671 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -118,6 +118,8 @@
 /* Begin PBXFileReference section */
 		18049E6218D98EF500D89735 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
 		18049E6318D98EF500D89735 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		18049E6518D9951700D89735 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		18049E6618D9951700D89735 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		C2394B5018A93380006B9C59 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		C2394B5118A93380006B9C59 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		C23EBF4B1892D27700793896 /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
@@ -188,8 +190,6 @@
 		C274709F18D8AB3B009E9C24 /* STDbObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STDbObject.m; sourceTree = "<group>"; };
 		C27470A018D8AB3B009E9C24 /* STDbVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDbVersion.h; sourceTree = "<group>"; };
 		C27470A418D8AB46009E9C24 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		C27470A718D8AD3E009E9C24 /* NewsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsList.h; sourceTree = "<group>"; };
-		C27470A818D8AD3E009E9C24 /* NewsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsList.m; sourceTree = "<group>"; };
 		C27470AA18D8AD74009E9C24 /* NewsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsObject.h; sourceTree = "<group>"; };
 		C27470AB18D8AD74009E9C24 /* NewsObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsObject.m; sourceTree = "<group>"; };
 		C27FAA1518BF43F0000AB671 /* NSString+HtmlString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HtmlString.h"; sourceTree = "<group>"; };
@@ -356,13 +356,6 @@
 			name = Tweet;
 			sourceTree = "<group>";
 		};
-		C245A88E18D748D800C8BF05 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
-			sourceTree = "<group>";
-		};
 		C250EDA318AB6B1100A6E20F /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -453,8 +446,6 @@
 		C27470A618D8AC09009E9C24 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				C27470A718D8AD3E009E9C24 /* NewsList.h */,
-				C27470A818D8AD3E009E9C24 /* NewsList.m */,
 				C27470AA18D8AD74009E9C24 /* NewsObject.h */,
 				C27470AB18D8AD74009E9C24 /* NewsObject.m */,
 			);
@@ -626,6 +617,8 @@
 				C2E8C9B018AD31EF0011B5C4 /* BaseMainViewController.m */,
 				C2524FA918D83796005DECE4 /* BaseNavigationController.h */,
 				C2524FAA18D83796005DECE4 /* BaseNavigationController.m */,
+				18049E6518D9951700D89735 /* BaseViewController.h */,
+				18049E6618D9951700D89735 /* BaseViewController.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -827,7 +820,6 @@
 		C2FED29A18AA740E003D5854 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				C245A88E18D748D800C8BF05 /* New Group */,
 				C2FED29218AA3419003D5854 /* UIView+Extension.h */,
 				C2FED29318AA3419003D5854 /* UIView+Extension.m */,
 				C250EDAE18AB7FD700A6E20F /* UIImage+BxExtension.h */,
@@ -963,7 +955,6 @@
 				C2E8C9B118AD31EF0011B5C4 /* BaseMainViewController.m in Sources */,
 				C250EDA218AB6AA300A6E20F /* NSString+BxExtension.m in Sources */,
 				C250EDBA18ABD36A00A6E20F /* BlogCell.m in Sources */,
-				C27470A918D8AD3E009E9C24 /* NewsList.m in Sources */,
 				C2905AD318B3036200F970BB /* CMDataStorage.m in Sources */,
 				C250EDB018AB7FD700A6E20F /* UIImage+BxExtension.m in Sources */,
 				C27470AC18D8AD74009E9C24 /* NewsObject.m in Sources */,
@@ -989,6 +980,7 @@
 				C2F5122D188ED0990048AE7F /* RightSettingViewController.m in Sources */,
 				C2E8C9A018ACB3560011B5C4 /* BaseUITableViewController.m in Sources */,
 				C245A89118D748F800C8BF05 /* UIView+MotionEffect.m in Sources */,
+				18049E6718D9951700D89735 /* BaseViewController.m in Sources */,
 				C23F259B18B4FBC900F805CF /* BlogDetail.m in Sources */,
 				C2E5732F18C0366500B7D703 /* CircleView.m in Sources */,
 				C2E8C9A518AD1BFD0011B5C4 /* NewsDetailViewController.m in Sources */,
