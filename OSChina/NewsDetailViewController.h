@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-
 /* 资讯详情页面
 */
 @interface NewsDetailViewController : BaseViewController

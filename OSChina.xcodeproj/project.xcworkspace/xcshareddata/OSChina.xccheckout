@@ -19,6 +19,10 @@
 	<dict>
 		<key>514E8643-12FF-46E5-BA80-BBC1395A7E3C</key>
 		<string>../..</string>
+		<key>7764C627-D22E-43B0-BFB3-E6904C5A2FD6</key>
+		<string>../../vendors/DTCoreText/Core/Externals/DTFoundation</string>
+		<key>E8E5BEF6-DD83-45FF-B4D0-944E533F08B1</key>
+		<string>../../OSChina/vendors/DTCoreText/Core/Externals/DTFoundation</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/baxiang/OSChina.git</string>
@@ -28,6 +32,14 @@
 	<string>514E8643-12FF-46E5-BA80-BBC1395A7E3C</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7764C627-D22E-43B0-BFB3-E6904C5A2FD6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DTFoundation</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
