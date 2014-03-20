@@ -37,7 +37,6 @@
         createdLabel.backgroundColor = [UIColor clearColor];
         createdLabel.textColor = [UIColor blackColor];
         [self.contentView addSubview:createdLabel];
-       
         feedBack = [[UIImageView alloc] initWithFrame:CGRectMake(250, separLine.bottom+5, 17, 15)];
         feedBack.image = [UIImage imageNamed:@"icon_feedback"];
         [self.contentView addSubview:feedBack];
