@@ -9,6 +9,7 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "RTLabel.h"
+#import "AMAttributedHighlightLabel.h"
 @interface TweetCell()
 
 @end
@@ -17,7 +18,7 @@
 
     UIImageView *headIcon;
     UILabel * authorLable;
-     RTLabel * bodyLable;
+     AMAttributedHighlightLabel * bodyLable;
      UILabel * createdLabel;
      UILabel * repliesCountLabel;
      UIImageView *separLine;
@@ -32,7 +33,7 @@
        headIcon.layer.cornerRadius = 20.0f;
        headIcon.layer.MasksToBounds = YES;
        headIcon.layer.borderWidth = 1.0f;
-        headIcon.layer.borderColor = [[UIColor lightTextColor] CGColor];
+        headIcon.layer.borderColor = [[UIColor grayColor] CGColor];
         [self.contentView addSubview:headIcon];
         
         authorLable = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -41,10 +42,16 @@
         authorLable.textColor = RGB(69, 176, 222);
         [self.contentView addSubview:authorLable];
        
-        bodyLable = [[RTLabel alloc] initWithFrame:CGRectMake(55,40,250,200)];
+        bodyLable = [[AMAttributedHighlightLabel alloc] initWithFrame:CGRectMake(55,40,250,200)];
         bodyLable.backgroundColor = [UIColor clearColor];
+        bodyLable.numberOfLines = 0;
+        bodyLable.textColor = [UIColor blackColor];
+        bodyLable.lineBreakMode = NSLineBreakByCharWrapping;
         bodyLable.font = [UIFont systemFontOfSize:15.0f];
 		[self.contentView addSubview:bodyLable];
+        
+        
+        
         
         createdLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         createdLabel.font = [UIFont systemFontOfSize:15.f];
@@ -74,21 +81,23 @@
     headIcon.frame = CGRectMake(10, 5, 40, 40);
     authorLable.frame = CGRectMake(headIcon.right+10, 10, 250, 15);
     authorLable.text =_tweet.author;
-    bodyLable.text = _tweet.body;
-    CGSize optimumSize = [bodyLable optimumSize];
-	CGRect frame = bodyLable.frame;
-	frame.size.height = (int)optimumSize.height+5;
-	[bodyLable setFrame:frame];
+    UIFont *font = [UIFont systemFontOfSize:15.0f];
+   
+    CGSize size = CGSizeMake(250,CGFLOAT_MAX);
+    //计算实际frame大小，并将label的frame变成实际大小
+    CGSize labelsize = [_tweet.body sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+    [bodyLable setString:_tweet.body];
+    bodyLable.frame = CGRectMake(55,40,labelsize.width,labelsize.height);
     separLine.frame = CGRectMake(20, bodyLable.bottom+10, 300, 1);
     
     
 }
 +(CGFloat) getCurrTweetCellHright:(Tweet*) tweet{
    
-    RTLabel *content =[[RTLabel alloc] initWithFrame:CGRectMake(50,40,250,100)];
-    //[content setParagraphReplacement:@""];
-    content.text = tweet.body;
-    CGSize optimumSize = [content optimumSize];
+    CGSize size = CGSizeMake(250,CGFLOAT_MAX);
+    //计算实际frame大小，并将label的frame变成实际大小
+    UIFont *font = [UIFont systemFontOfSize:15.0f];
+    CGSize optimumSize = [tweet.body sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
     return optimumSize.height+55;
     
 }

@@ -11,6 +11,7 @@
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "LoadMoreFootView.h"
+
 @interface TweetViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic)   SliderSwitch *segementControl;
 @property (strong, nonatomic)   UITableView *tweetTableView;
