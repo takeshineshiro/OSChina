@@ -10,9 +10,8 @@
 #import "SliderSwitch.h"
 #import "Tweet.h"
 #import "TweetCell.h"
-#import "EGORefreshTableHeaderView.h"
 #import "LoadMoreFootView.h"
-@interface TweetViewController ()<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
+@interface TweetViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic)   SliderSwitch *segementControl;
 @property (strong, nonatomic)   UITableView *tweetTableView;
 @property (strong, nonatomic)   NSMutableArray *latestTweetsArray;
@@ -22,7 +21,6 @@
 @property (assign, nonatomic)   NSInteger  hotPageIndex;
 @property (assign, nonatomic)   NSInteger  latestPageCount;
 @property (assign, nonatomic)   NSInteger  hotPageCount;
-@property (strong, nonatomic)   EGORefreshTableHeaderView *refreshTableHeaderView;
 @property (assign, nonatomic)   BOOL reloading;
 @property (strong, nonatomic)   LoadMoreFootView* loadMoreFooterView;
 @end
@@ -62,9 +60,6 @@
     _tweetTableView.backgroundColor = [UIColor clearColor];
     _tweetTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tweetTableView];
-//    _refreshTableHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, 0-self.view.height+60, self.view.width, self.view.height-60)];
-//    _refreshTableHeaderView.delegate = self;
-//    [_tweetTableView addSubview:_refreshTableHeaderView];
     
 }
 
@@ -107,6 +102,7 @@
     if (_currSelectIndex == 0) {
         Tweet *tweet= _latestTweetsArray[indexPath.row];
         result= [TweetCell getCurrTweetCellHright:tweet];
+        NSLog(@"%d---%f",indexPath.row,result);
         return result;
     }
     if (_currSelectIndex == 1) {
@@ -116,14 +112,18 @@
     }
      return 0;
 }
+
+
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * newCellIdentifier= @"newCellIdentifier";
     static NSString * hotCellIdentifier= @"hotCellIdentifier";
     if (_currSelectIndex == 0) {
         TweetCell *cell= [tableView dequeueReusableCellWithIdentifier:newCellIdentifier];
         if (!cell) {
-            cell= [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:newCellIdentifier];
+        cell= [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:newCellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+
         Tweet *tweet= _latestTweetsArray[indexPath.row];
         cell.tweet = tweet;
         return cell;
@@ -131,11 +131,12 @@
     if (_currSelectIndex == 1) {
         TweetCell *cell= [tableView dequeueReusableCellWithIdentifier:hotCellIdentifier];
         if (!cell) {
-            cell= [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:hotCellIdentifier];
+        cell= [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:hotCellIdentifier];
+        //cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         Tweet *tweet= _hotTweetsArray[indexPath.row];
         cell.tweet = tweet;
-         return cell;
+        return cell;
     }
     return nil;
 }
@@ -171,15 +172,9 @@
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-	
-	[_refreshTableHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    
-}
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
 	
-	[_refreshTableHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 	if (self.loadMoreFooterView) {
         CGFloat endScrolling = scrollView.contentOffset.y + scrollView.height;
         if (scrollView.contentSize.height > scrollView.height

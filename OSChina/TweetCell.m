@@ -28,11 +28,11 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-       headIcon= [[UIImageView alloc] initWithFrame:CGRectMake(10, -5, 40, 40)];
+       headIcon= [[UIImageView alloc] initWithFrame:CGRectZero];
        headIcon.layer.cornerRadius = 20.0f;
        headIcon.layer.MasksToBounds = YES;
-       headIcon.layer.borderWidth = 1;
-        headIcon.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+       headIcon.layer.borderWidth = 1.0f;
+        headIcon.layer.borderColor = [[UIColor lightTextColor] CGColor];
         [self.contentView addSubview:headIcon];
         
         authorLable = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -41,7 +41,7 @@
         authorLable.textColor = RGB(69, 176, 222);
         [self.contentView addSubview:authorLable];
        
-        bodyLable = [[RTLabel alloc] initWithFrame:CGRectMake(50,40,250,200)];
+        bodyLable = [[RTLabel alloc] initWithFrame:CGRectMake(55,40,250,200)];
         bodyLable.backgroundColor = [UIColor clearColor];
         bodyLable.font = [UIFont systemFontOfSize:15.0f];
 		[self.contentView addSubview:bodyLable];
@@ -69,8 +69,9 @@
 
 -(void) layoutSubviews{
     
-    [headIcon setImageWithURL:[NSURL URLWithString:_tweet.portrait] placeholderImage:nil];
     
+    [headIcon setImageWithURL:[NSURL URLWithString:_tweet.portrait] placeholderImage:nil];
+    headIcon.frame = CGRectMake(10, 5, 40, 40);
     authorLable.frame = CGRectMake(headIcon.right+10, 10, 250, 15);
     authorLable.text =_tweet.author;
     bodyLable.text = _tweet.body;
@@ -78,24 +79,23 @@
 	CGRect frame = bodyLable.frame;
 	frame.size.height = (int)optimumSize.height+5;
 	[bodyLable setFrame:frame];
-    separLine.frame = CGRectMake(20, bodyLable.bottom+5, 300, 1);
+    separLine.frame = CGRectMake(20, bodyLable.bottom+10, 300, 1);
     
     
 }
 +(CGFloat) getCurrTweetCellHright:(Tweet*) tweet{
    
     RTLabel *content =[[RTLabel alloc] initWithFrame:CGRectMake(50,40,250,100)];
-    [content setParagraphReplacement:@""];
+    //[content setParagraphReplacement:@""];
     content.text = tweet.body;
     CGSize optimumSize = [content optimumSize];
-    return optimumSize.height+65;
+    return optimumSize.height+55;
     
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+   
 }
 
 @end
