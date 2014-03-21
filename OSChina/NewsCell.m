@@ -32,15 +32,15 @@
         separLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, 320, 0.5)];
         separLine.image = [[UIImage imageNamed:@"separateLine"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
         [self.contentView addSubview:separLine];
-        createdLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLable.left, separLine.bottom+5, 200, 20)];
+        createdLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLable.left, separLine.bottom+10, 200, 20)];
         createdLabel.font = [UIFont systemFontOfSize:14.f];
         createdLabel.backgroundColor = [UIColor clearColor];
-        createdLabel.textColor = [UIColor blackColor];
+        createdLabel.textColor = [UIColor lightGrayColor];
         [self.contentView addSubview:createdLabel];
-        feedBack = [[UIImageView alloc] initWithFrame:CGRectMake(250, separLine.bottom+5, 17, 15)];
+        feedBack = [[UIImageView alloc] initWithFrame:CGRectMake(250, separLine.bottom+15, 17, 15)];
         feedBack.image = [UIImage imageNamed:@"icon_feedback"];
         [self.contentView addSubview:feedBack];
-        repliesCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(feedBack.right+5, separLine.bottom+5, 40, 20)];
+        repliesCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(feedBack.right+5, feedBack.top, 40, 14)];
         repliesCountLabel.font = [UIFont systemFontOfSize:14.f];
         repliesCountLabel.backgroundColor = [UIColor clearColor];
         repliesCountLabel.textColor = RGB(74, 171, 218);
@@ -57,15 +57,15 @@
     createdLabel.text = [NSString stringWithFormat:@"%@发表于%@",_news.author,[_news.pubDate intervalSinceNow]];
     repliesCountLabel.text =_news.commentCount ;
 }
-//-(void)setFrame:(CGRect)frame
-//
-//{
-//    //frame.origin.y -= 30;
-//    frame.origin.x += 5;
-//    frame.size.width -= 10;
-//    [super setFrame:frame];
-//
-//}
+-(void)setFrame:(CGRect)frame
+
+{
+    //frame.origin.y -= 30;
+    frame.origin.x += 5;
+    frame.size.width -= 10;
+    [super setFrame:frame];
+
+}
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

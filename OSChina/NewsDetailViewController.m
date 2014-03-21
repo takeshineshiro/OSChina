@@ -39,7 +39,7 @@
     [self setTitle:@"资讯详情"];
     [self setBackbuttonItemStyle];
     self.currLoadQueue = dispatch_queue_create("com.oschina.newsDatail", DISPATCH_QUEUE_SERIAL);
-    _textView = [[DTAttributedTextView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.width, self.view.height)];
+    _textView = [[DTAttributedTextView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.width, self.view.height-44)];
 	_textView.shouldDrawImages = NO;
 	_textView.shouldDrawLinks = NO;
 	_textView.textDelegate = self;
