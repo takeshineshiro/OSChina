@@ -90,18 +90,8 @@ static NSString *const kTweetListURLString = @"tweet_list";
     }];
 }
 
-/**
- @property (nonatomic,strong) NSString *newsid;
- @property (nonatomic,strong) NSString *title;
- @property (nonatomic,strong) NSString *commentCount;
- @property (nonatomic,strong) NSString *author;
- @property (nonatomic,strong) NSString *authorid;
- @property (nonatomic,strong) NSDate *pubDate;
- @property (nonatomic,strong) NSString *url;
- */
 -(void)saveNewsList:(NSArray*) newsList AndUniqueIdentifier:(NSString*) identifier{
   
-    
     [NewsObject removeDbObjectsWhere:@"all"];
     for (NewsObject * currNew in newsList) {
         NewsObject *newsObject= [[NewsObject alloc] init];
@@ -121,11 +111,20 @@ static NSString *const kTweetListURLString = @"tweet_list";
 -(void) getnewsDetailWithNewID:(NSString*) Newsid RequestResult:(RequestResultBlocks) blocks{
     NSMutableDictionary *paramters = [NSMutableDictionary dictionaryWithCapacity:1];
     [paramters setValue:Newsid forKey:@"id"];
+    NSData *newsData= [[AppCache shareCache] getCachedData:[[NSString stringWithFormat:@"NewsDetail_%@",Newsid] MD5]];
+    if ([newsData length]) {
+        NSDictionary *dict= [[XMLParser shareInstance] parseData:newsData];
+        NSDictionary *news= [XMLParser getDataAtPath:@"oschina.news" fromResultObject:dict];
+        blocks(news,nil);
+        return;
+    }
     [self getPath:kNewsDetailURLString parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"NewsDetail --%@",operation.responseString);
         NSDictionary *dict= [[XMLParser shareInstance] parseData:operation.responseData];
         NSDictionary *news= [XMLParser getDataAtPath:@"oschina.news" fromResultObject:dict];
+        [[AppCache shareCache] saveCacheData: operation.responseData forKey:[[NSString stringWithFormat:@"NewsDetail_%@",Newsid] MD5]];
         blocks(news,nil);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         blocks(nil,error);
     }];
