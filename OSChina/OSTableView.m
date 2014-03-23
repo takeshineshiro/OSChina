@@ -135,19 +135,24 @@
     if (self.tableMode == RefreshTableViewModeNormal || self.tableMode == RefreshTableViewModeJustLatest) {
         [self.pullRefreshView egoRefreshScrollViewDidScroll:scrollView];
     }
+    if (scrollView.contentOffset.y+20>(scrollView.contentSize.height - scrollView.frame.size.height)) {
+           [self loadMore];
+    }
+    
 }
 
 - (void)ScrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
    
-        
-        if(scrollView.contentOffset.y-65.f > ((scrollView.contentSize.height - scrollView.frame.size.height)))
-        {
-            if (self.loadMoreView.state != TableViewLoadMoreStateEnd) {
-                [self loadMore];
-            }
-        }else{
-           [self.pullRefreshView egoRefreshScrollViewDidEndDragging:scrollView];
-        }
+    
+//        if(scrollView.contentOffset.y-5.0f > ((scrollView.contentSize.height - scrollView.frame.size.height)))
+//        {
+//            if (self.loadMoreView.state != TableViewLoadMoreStateEnd) {
+//                
+//            }
+//        }else{
+//           
+//        }
+    [self.pullRefreshView egoRefreshScrollViewDidEndDragging:scrollView];
     
 }
 
@@ -160,9 +165,8 @@
     NSUserDefaults *defaulte= [NSUserDefaults standardUserDefaults];
     NSDate *RefreshDate= [defaulte objectForKey:@"RefreshTime"];
     NSTimeInterval currInterval= [[NSDate date] timeIntervalSinceDate:RefreshDate];
-    if (currInterval>=0 ||isnan(currInterval)) {
+    if (currInterval>=60*30 ||isnan(currInterval)) {
         [self setContentOffset:CGPointMake(0.f, -65.f) animated:NO];
-       
         [self.pullRefreshView egoRefreshScrollViewDidEndDragging:self];
         [defaulte setObject:[NSDate date]  forKey:@"RefreshTime"];
         [defaulte synchronize];
@@ -187,10 +191,13 @@
 #pragma mark - Actions Private
 
 - (void)loadMore {
-    
+    if (!_isLodaMore) {
         if ([self.delegateRefresh respondsToSelector:@selector(pullUpLoadMore)]) {
             [self.delegateRefresh pullUpLoadMore];
-        self.loadMoreView.state = TableViewLoadMoreStateLoading;
+            self.isLodaMore = YES;
+            self.loadMoreView.state = TableViewLoadMoreStateLoading;
+    }
+    
     }
 }
 
@@ -243,6 +250,7 @@
         case TableViewFootMoreEnableView:{
             self.tableFooterView = self.loadMoreView;
             self.loadMoreView.state = TableViewLoadMoreStateNormal;
+            self.isLodaMore = NO;
         }
             break;
         case TableViewMoreDisableView:{

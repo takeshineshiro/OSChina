@@ -43,33 +43,33 @@
 - (id)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor  {
     if((self = [super initWithFrame:frame])) {
 		
-		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		//self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
-        self.backgroundColor = [UIColor whiteColor];
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(90.0f, frame.size.height - 30.0f, self.frame.size.width-90, 20.0f)];
-		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		label.font = [UIFont systemFontOfSize:12.0f];
-		label.textColor = textColor;
-		label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
-		label.backgroundColor = [UIColor clearColor];
-		//label.textAlignment = NSTextAlignmentCenter;
-		[self addSubview:label];
-		_lastUpdatedLabel=label;
+//		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//		//self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
+//        self.backgroundColor = [UIColor whiteColor];
+//		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(90.0f, frame.size.height - 30.0f, self.frame.size.width-90, 20.0f)];
+//		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//		label.font = [UIFont systemFontOfSize:12.0f];
+//		label.textColor = textColor;
+//		label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+//		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
+//		label.backgroundColor = [UIColor clearColor];
+//		//label.textAlignment = NSTextAlignmentCenter;
+//		[self addSubview:label];
+//		_lastUpdatedLabel=label;
+//		
+//		
+//		label = [[UILabel alloc] initWithFrame:CGRectMake(90.0f, frame.size.height - 48.0f, self.frame.size.width-90, 20.0f)];
+//		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//		label.font = [UIFont boldSystemFontOfSize:13.0f];
+//		label.textColor = textColor;
+//		label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+//		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
+//		label.backgroundColor = [UIColor clearColor];
+//		//label.textAlignment = NSTextAlignmentCenter;
+//		[self addSubview:label];
+//		_statusLabel=label;
 		
-		
-		label = [[UILabel alloc] initWithFrame:CGRectMake(90.0f, frame.size.height - 48.0f, self.frame.size.width-90, 20.0f)];
-		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		label.font = [UIFont boldSystemFontOfSize:13.0f];
-		label.textColor = textColor;
-		label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
-		label.backgroundColor = [UIColor clearColor];
-		//label.textAlignment = NSTextAlignmentCenter;
-		[self addSubview:label];
-		_statusLabel=label;
-		
-        _loadingView= [[CircleLoadingView alloc] initWithFrame:CGRectMake(60.0f, frame.size.height - 45.0f, 20.0f, 20.0f)];
+        _loadingView= [[CircleLoadingView alloc] initWithFrame:CGRectMake(150.0f, frame.size.height - 45.0f, 20.0f, 20.0f)];
         [self addSubview:_loadingView];
 		[self setState:EGOOPullRefreshNormal];
 		
