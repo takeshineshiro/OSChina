@@ -26,6 +26,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "CircleLoadingView.h"
 
 typedef enum{
 	EGOOPullRefreshPulling = 0,
@@ -36,9 +37,8 @@ typedef enum{
 @protocol EGORefreshTableHeaderDelegate;
 @interface EGORefreshTableHeaderView : UIView {
 	
-	id _delegate;
+	
 	EGOPullRefreshState _state;
-
 	UILabel *_lastUpdatedLabel;
 	UILabel *_statusLabel;
 	CALayer *_arrowImage;
@@ -47,19 +47,27 @@ typedef enum{
 
 }
 
-@property(nonatomic,assign) id <EGORefreshTableHeaderDelegate> delegate;
-
+@property(nonatomic,weak) id <EGORefreshTableHeaderDelegate> delegate;
+@property(nonatomic,strong)  CircleLoadingView *loadingView;
+@property (nonatomic,assign) BOOL loading;
 - (id)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor;
 
 - (void)refreshLastUpdatedDate;
+- (void)egoRefreshScrollViewWillBeginScroll:(UIScrollView *)scrollView;
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView;
 - (void)egoRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView;
 - (void)egoRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView;
-
+-(void) initLoadView;
 @end
-@protocol EGORefreshTableHeaderDelegate
+@protocol EGORefreshTableHeaderDelegate<NSObject>
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view;
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view;
 @optional
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view;
+@end
+
+@interface CircleView : UIView
+
+@property (nonatomic, assign) float progress;
+
 @end

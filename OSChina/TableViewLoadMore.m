@@ -66,7 +66,7 @@
 - (UILabel*)labelLoadEnd {
     if (!_labelLoadEnd) {
         _labelLoadEnd = [[UILabel alloc] initWithFrame:self.frame];
-        _labelLoadEnd.textAlignment = UITextAlignmentCenter;
+        _labelLoadEnd.textAlignment = NSTextAlignmentCenter;
         _labelLoadEnd.font = [UIFont systemFontOfSize:17.0f];
         _labelLoadEnd.backgroundColor = [UIColor clearColor];
         _labelLoadEnd.textColor = [UIColor grayColor];

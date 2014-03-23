@@ -10,11 +10,12 @@
 #import "BlogCell.h"
 #import "SVPullToRefresh.h"
 #import "BlogDetailViewController.h"
-@interface BlogViewController ()
+#import "OSTableView.h"
+@interface BlogViewController ()<RefreshTableViewDelegate>
 
 @property (nonatomic, assign) NSInteger currPageIndex;
 @property (nonatomic, strong) NSMutableArray *blogArray;
-@property (nonatomic, strong) UITableView *blogTableView;
+@property (nonatomic, strong) OSTableView *blogTableView;
 @end
 
 @implementation BlogViewController
@@ -32,39 +33,40 @@
 {
     [super viewDidLoad];
     self.title = @"博客";
-    _currPageIndex = 0;
+    
     _blogArray = [NSMutableArray array];
 	[self initNewsTableView];
+    if (![self.blogTableView setAutoRefresh]) {
+        _currPageIndex = 0;
+        [self requestDatareIsFresh:YES isMore:NO currPageIndex:_currPageIndex];
+    }
 }
 
 -(void) initNewsTableView{
     
-    self.blogTableView =[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height-30) style:UITableViewStylePlain];
+    self.blogTableView =[[OSTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height-60) ];
     self.blogTableView.delegate = self;
     self.blogTableView.dataSource = self;
+    self.blogTableView.delegateRefresh = self;
     [self.view addSubview:_blogTableView];
-    [self.blogTableView addPullToRefreshWithActionHandler:^{
-        
-    }];
-    __weak BlogViewController *weakSelf = self;
-    [self.blogTableView addInfiniteScrollingWithActionHandler:^{
-        [weakSelf requestCurrentNewsData:NO isMore:YES];
-    }];
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestCurrentNewsData:NO isMore:NO];
+    
 
 }
--(void) requestCurrentNewsData:(BOOL)refresh isMore:(BOOL) more{
+-(void) requestDatareIsFresh:(BOOL)refresh isMore:(BOOL) more currPageIndex:(NSInteger)pageIndex{
     __weak BlogViewController *weakSelf = self;
-    [[OSAPIClient shareClient] getBloglistWithPageIndex:_currPageIndex RequestResult:^(id resultDatas, NSError *error) {
-        _currPageIndex ++;
-        [self.blogArray addObjectsFromArray:resultDatas];
-        [_blogTableView reloadData];
-        if (more) {
-            [weakSelf.blogTableView.infiniteScrollingView stopAnimating];
+    [[OSAPIClient shareClient] getBloglistWithPageIndex:pageIndex RequestResult:^(id resultDatas, NSError *error) {
+        if (refresh) {
+             [self.blogArray removeAllObjects];
+             [weakSelf.blogTableView finishLoadingData];
         }
+        _currPageIndex ++;
+        [weakSelf.blogArray addObjectsFromArray:resultDatas];
+        [weakSelf.blogTableView reloadData];
+        [weakSelf.blogTableView setTableViewFootType:TableViewFootMoreEnableView];
     }];
     
     
@@ -106,5 +108,29 @@
         [self.navigationController pushViewController:blogDetail animated:YES];
     }
     
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self.blogTableView scrollViewWillBeginDragging:scrollView];
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.blogTableView ScrollViewDidScroll:scrollView];
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    [self.blogTableView ScrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+}
+
+-(void)pullDownRefresh{
+    _currPageIndex = 0;
+   [self requestDatareIsFresh:YES isMore:NO currPageIndex:_currPageIndex];
+}
+
+-(void)pullUpLoadMore{
+  [self requestDatareIsFresh:NO isMore:YES currPageIndex:_currPageIndex];
+}
+- (void)RefreshTableViewWillBeginLoadingLatest{
+    
+}
+
+- (void)RefreshTableViewWillBeginLoadingLast{
 }
 @end

@@ -24,7 +24,7 @@ typedef enum {
 //table State
 typedef enum {
     RefreshTableViewStateNormal = 0,//get origin data success
-    RefreshTableViewStateError,//get origin data fail
+    RefreshTableViewStateError,  //get origin data fail
 }RefreshTableViewState;
 
 //load state
@@ -34,38 +34,44 @@ typedef enum {
     RefreshTableViewLoadedStateLastDisable,
 }RefreshTableViewLoadedState;
 
+typedef NS_ENUM(NSInteger, TableViewFootType) {
+
+    TableViewFootMoreEnableView,
+    TableViewMoreDisableView,
+    TableViewFootCustomView,
+};
+
+
 @protocol RefreshTableViewDelegate <NSObject>
 
 @optional
 
-- (void)RefreshTableViewWillBeginLoadingOrigin;
-
-- (void)RefreshTableViewWillBeginLoadingLatest;
-
-- (void)RefreshTableViewWillBeginLoadingLast;
-
-- (UIView*)RefreshTableViewErrorView;
+// 下拉刷新
+- (void)pullDownRefresh;
+// 上拉获取更多
+- (void)pullUpLoadMore;
 
 @end
 
 @interface OSTableView : UITableView <EGORefreshTableHeaderDelegate,
-TableViewLoadMoreDelegate, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
+TableViewLoadMoreDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, weak) id <RefreshTableViewDelegate> delegateRefresh;
 @property (nonatomic, assign) RefreshTableViewState tableState;
 @property (nonatomic, assign) RefreshTableViewMode tableMode;
 @property (nonatomic, assign) RefreshTableViewLoadedState loadOverState;
-
+@property (nonatomic, assign) TableViewFootType tableViewFootType;
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
 - (void)ScrollViewDidScroll:(UIScrollView *)scrollView;
 
 - (void)ScrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
+-(BOOL) setAutoRefresh;
 
-- (void)showLoadingLatest;
 
 - (void)showLoadingLast;
 
 - (void)showLoadingOrigin;
-
+- (void)finishLoadingData;
 @end
 
 

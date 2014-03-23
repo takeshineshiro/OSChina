@@ -12,7 +12,8 @@
 
 @property (nonatomic, strong) EGORefreshTableHeaderView *pullRefreshView;
 @property (nonatomic, strong) TableViewLoadMore *loadMoreView;
-@property (nonatomic, assign) BOOL isLoading;
+@property (nonatomic, assign) BOOL isRefresh;
+@property (nonatomic, assign) BOOL isLodaMore;
 @property (nonatomic, strong) UIView *viewError;
 
 @end
@@ -39,7 +40,6 @@
         case RefreshTableViewModeNormal: {
             [self addSubview:self.pullRefreshView];
             [self.pullRefreshView refreshLastUpdatedDate];
-            self.tableFooterView = self.loadMoreView;
         }
             break;
             
@@ -89,7 +89,7 @@
 - (void)setLoadOverState:(RefreshTableViewLoadedState)loadOverState {
     switch (loadOverState) {
         case RefreshTableViewLoadedStateLatest: {
-            [self doneLoadingTableViewData];
+            //[self doneLoadingTableViewData];
         }
             break;
             
@@ -112,6 +112,7 @@
 
 #pragma mark - NSObject
 
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -121,31 +122,33 @@
     return self;
 }
 
-#pragma mark - UIView
-- (void)drawRect:(CGRect)rect {
-    if ([self.delegateRefresh respondsToSelector:@selector(RefreshTableViewErrorView)]) {
-        self.viewError = [self.delegateRefresh RefreshTableViewErrorView];
-    }
-}
+
 
 #pragma mark - Actions Public
 
-- (void)MCScrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.pullRefreshView egoRefreshScrollViewWillBeginScroll:scrollView];
+}
+
+- (void)ScrollViewDidScroll:(UIScrollView *)scrollView {
     if (self.tableMode == RefreshTableViewModeNormal || self.tableMode == RefreshTableViewModeJustLatest) {
         [self.pullRefreshView egoRefreshScrollViewDidScroll:scrollView];
     }
 }
 
-- (void)MCScrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (self.tableMode == RefreshTableViewModeNormal || self.tableMode == RefreshTableViewModeJustLatest) {
-        [self.pullRefreshView egoRefreshScrollViewDidEndDragging:scrollView];
+- (void)ScrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+   
+        
         if(scrollView.contentOffset.y-65.f > ((scrollView.contentSize.height - scrollView.frame.size.height)))
         {
             if (self.loadMoreView.state != TableViewLoadMoreStateEnd) {
                 [self loadMore];
             }
+        }else{
+           [self.pullRefreshView egoRefreshScrollViewDidEndDragging:scrollView];
         }
-    }
+    
 }
 
 - (void)showLoadingLatest {
@@ -153,51 +156,57 @@
     [self.pullRefreshView egoRefreshScrollViewDidEndDragging:self];
 }
 
+-(BOOL) setAutoRefresh{
+    NSUserDefaults *defaulte= [NSUserDefaults standardUserDefaults];
+    NSDate *RefreshDate= [defaulte objectForKey:@"RefreshTime"];
+    NSTimeInterval currInterval= [[NSDate date] timeIntervalSinceDate:RefreshDate];
+    if (currInterval>=0 ||isnan(currInterval)) {
+        [self setContentOffset:CGPointMake(0.f, -65.f) animated:NO];
+       
+        [self.pullRefreshView egoRefreshScrollViewDidEndDragging:self];
+        [defaulte setObject:[NSDate date]  forKey:@"RefreshTime"];
+        [defaulte synchronize];
+        return YES;
+    }
+    return NO;
+}
 - (void)showLoadingLast {
     [self loadMore];
 }
 
-- (void)showLoadingOrigin {
-    if (!self.isLoading) {
-        if ([self.delegateRefresh respondsToSelector:@selector(MCRefreshTableViewWillBeginLoadingOrigin)]) {
-            [self.delegateRefresh RefreshTableViewWillBeginLoadingOrigin];
-        }
-        self.isLoading = YES;
-        self.loadMoreView.state = TableViewLoadMoreStateLoading;
-    }
-}
+//- (void)showLoadingOrigin {
+//    if (!self.isLoading) {
+//        if ([self.delegateRefresh respondsToSelector:@selector(RefreshTableViewWillBeginLoadingOrigin)]) {
+//            [self.delegateRefresh RefreshTableViewWillBeginLoadingOrigin];
+//        }
+//        self.isLoading = YES;
+//        self.loadMoreView.state = TableViewLoadMoreStateLoading;
+//    }
+//}
 
 #pragma mark - Actions Private
 
 - (void)loadMore {
-    if (!self.isLoading) {
-        if ([self.delegateRefresh respondsToSelector:@selector(RefreshTableViewWillBeginLoadingLast)]) {
-            [self.delegateRefresh RefreshTableViewWillBeginLoadingLast];
-        }
-        self.isLoading = YES;
+    
+        if ([self.delegateRefresh respondsToSelector:@selector(pullUpLoadMore)]) {
+            [self.delegateRefresh pullUpLoadMore];
         self.loadMoreView.state = TableViewLoadMoreStateLoading;
     }
 }
 
 - (void)loadMoreOver {
-    self.isLoading = NO;
+    self.isLodaMore = NO;
 }
 
 #pragma mark -
 #pragma mark Data Source Loading / Reloading Methods
 
 - (void)reloadTableViewDataSource{
-    if (!self.isLoading) {
-        self.isLoading = YES;
-        if ([self.delegateRefresh respondsToSelector:@selector(RefreshTableViewWillBeginLoadingLatest)]) {
-            [self.delegateRefresh RefreshTableViewWillBeginLoadingLatest];
-        }
-    }
-}
-
-- (void)doneLoadingTableViewData{
-	self.isLoading = NO;
-	[self.pullRefreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self];
+    
+        if ([self.delegateRefresh respondsToSelector:@selector(pullDownRefresh)]) {
+            _pullRefreshView.Loading = YES;
+            [self.delegateRefresh pullDownRefresh];
+       }
 }
 
 #pragma mark - EGORefreshTableHeaderDelegate Methods
@@ -209,10 +218,10 @@
 }
 
 // 下拉时回调
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view
-{
-    return self.isLoading;
-}
+//- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view
+//{
+//    return self.isRefresh;
+//}
 
 // 请求上次更新时间时调用
 - (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view
@@ -220,6 +229,30 @@
     return [NSDate date];
 }
 
+
+- (void)finishLoadingData{
+        self.pullRefreshView.loading = NO;
+        [self.pullRefreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self];
+   
+    
+}
+
+
+-(void)setTableViewFootType:(TableViewFootType)tableViewFootType{
+    switch (tableViewFootType) {
+        case TableViewFootMoreEnableView:{
+            self.tableFooterView = self.loadMoreView;
+            self.loadMoreView.state = TableViewLoadMoreStateNormal;
+        }
+            break;
+        case TableViewMoreDisableView:{
+            self.tableFooterView = self.loadMoreView;
+            self.loadMoreView.state = TableViewLoadMoreStateEnd;
+        }
+        default:
+            break;
+    }
+}
 #pragma mark - MCRefreshTableFooterViewDelegate
 
 - (void)footerViewButtonAction {

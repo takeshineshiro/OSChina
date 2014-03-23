@@ -34,7 +34,7 @@
      UIImageView *bgImage= [[UIImageView alloc ] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
      bgImage.image = bg;
      [self.view addSubview:bgImage];
-     [bgImage addCenterMotionEffectsXYWithOffset:10];
+     [bgImage addCenterMotionEffectsXYWithOffset:20];
      UITableView *MemuTable= [[UITableView alloc] initWithFrame:CGRectMake(30, 50, 200, self.view.frame.size.height)];
      MemuTable.delegate =self;
      MemuTable.dataSource = self;
@@ -43,7 +43,7 @@
     MemuTable.scrollEnabled  = NO;
      MemuTable.backgroundView = nil;
      MemuTable.backgroundColor = [UIColor clearColor];
-     [MemuTable addCenterMotionEffectsXYWithOffset:30];
+     //[MemuTable addCenterMotionEffectsXYWithOffset:30];
      [self.view addSubview:MemuTable];
      _menuIcons  =@[@"IconHome.png",@"IconCalendar.png",@"IconProfile.png",@"IconProfile.png",@"IconSettings.png"];
      _menuTitles = @[@"资讯",@"博客",@"讨论",@"动弹",@"软件"];
