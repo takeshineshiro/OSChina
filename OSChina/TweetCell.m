@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "RTLabel.h"
 #import "AMAttributedHighlightLabel.h"
+#import "TTTAttributedLabel.h"
 @interface TweetCell()
 
 @end
@@ -18,7 +19,7 @@
 
     UIImageView *headIcon;
     UILabel * authorLable;
-     AMAttributedHighlightLabel * bodyLable;
+     UILabel * bodyLable;
      UILabel * createdLabel;
      UILabel * repliesCountLabel;
      UIImageView *separLine;
@@ -34,24 +35,21 @@
        headIcon.layer.MasksToBounds = YES;
        headIcon.layer.borderWidth = 1.0f;
         headIcon.layer.borderColor = [[UIColor grayColor] CGColor];
-        [self.contentView addSubview:headIcon];
+        //[self.contentView addSubview:headIcon];
         
         authorLable = [[UILabel alloc] initWithFrame:CGRectZero];
         authorLable.font = [UIFont systemFontOfSize:14.0f];
         authorLable.backgroundColor = [UIColor clearColor];
         authorLable.textColor = RGB(69, 176, 222);
-        [self.contentView addSubview:authorLable];
+        //[self.contentView addSubview:authorLable];
        
-        bodyLable = [[AMAttributedHighlightLabel alloc] initWithFrame:CGRectMake(55,40,250,200)];
+        bodyLable = [[UILabel alloc] initWithFrame:CGRectMake(55,40,250,200)];
         bodyLable.backgroundColor = [UIColor clearColor];
         bodyLable.numberOfLines = 0;
         bodyLable.textColor = [UIColor blackColor];
         bodyLable.lineBreakMode = NSLineBreakByCharWrapping;
         bodyLable.font = [UIFont systemFontOfSize:15.0f];
 		[self.contentView addSubview:bodyLable];
-        
-        
-        
         
         createdLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         createdLabel.font = [UIFont systemFontOfSize:15.f];
@@ -67,9 +65,9 @@
         repliesCountLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:repliesCountLabel];
         
-        separLine= [[UIImageView alloc] initWithFrame:CGRectZero];
-        separLine.image = [UIImage imageNamed:@"separateLine"];
-        [self.contentView addSubview:separLine];
+//        separLine= [[UIImageView alloc] initWithFrame:CGRectZero];
+//        separLine.image = [UIImage imageNamed:@"separateLine"];
+//        [self.contentView addSubview:separLine];
     }
     return self;
 }
@@ -85,10 +83,17 @@
    
     CGSize size = CGSizeMake(250,CGFLOAT_MAX);
     //计算实际frame大小，并将label的frame变成实际大小
-    CGSize labelsize = [_tweet.body sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
-    [bodyLable setString:_tweet.body];
-    bodyLable.frame = CGRectMake(55,40,labelsize.width,labelsize.height);
-    separLine.frame = CGRectMake(20, bodyLable.bottom+10, 300, 1);
+    //CGSize labelsize = [_tweet.body sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+    NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          font, NSFontAttributeName,
+                                          nil];
+    CGRect frame = [_tweet.body boundingRectWithSize:size
+                                            options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                         attributes:attributesDictionary
+                                            context:nil];
+    [bodyLable setText:_tweet.body];
+    bodyLable.frame = CGRectMake(0,0,frame.size.width,frame.size.height);
+    //separLine.frame = CGRectMake(20, bodyLable.bottom+10, 300, 1);
     
     
 }
@@ -97,8 +102,18 @@
     CGSize size = CGSizeMake(250,CGFLOAT_MAX);
     //计算实际frame大小，并将label的frame变成实际大小
     UIFont *font = [UIFont systemFontOfSize:15.0f];
-    CGSize optimumSize = [tweet.body sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
-    return optimumSize.height+55;
+    //CGSize optimumSize = [tweet.body sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+    NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          font, NSFontAttributeName,
+                                          nil];
+    CGRect frame = [tweet.body boundingRectWithSize:size
+                                      options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                   attributes:attributesDictionary
+                                      context:nil];
+    
+    // This contains both height and width, but we really care about height.
+    
+    return frame.size.height+55;
     
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

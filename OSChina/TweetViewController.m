@@ -59,7 +59,7 @@
     _tweetTableView.dataSource = self;
     _tweetTableView.delegate = self;
     _tweetTableView.backgroundColor = [UIColor clearColor];
-    _tweetTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //_tweetTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tweetTableView];
     
 }
@@ -103,7 +103,6 @@
     if (_currSelectIndex == 0) {
         Tweet *tweet= _latestTweetsArray[indexPath.row];
         result= [TweetCell getCurrTweetCellHright:tweet];
-        NSLog(@"%d---%f",indexPath.row,result);
         return result;
     }
     if (_currSelectIndex == 1) {
@@ -116,25 +115,25 @@
 
 
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString * newCellIdentifier= @"newCellIdentifier";
-    static NSString * hotCellIdentifier= @"hotCellIdentifier";
-    if (_currSelectIndex == 0) {
+   
+       if (_currSelectIndex == 0) {
+        static NSString * newCellIdentifier= @"newCellIdentifier";
         TweetCell *cell= [tableView dequeueReusableCellWithIdentifier:newCellIdentifier];
-        if (!cell) {
+        if (cell ==nil) {
         cell= [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:newCellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-
+        cell.clipsToBounds = YES;
         Tweet *tweet= _latestTweetsArray[indexPath.row];
         cell.tweet = tweet;
         return cell;
     }
     if (_currSelectIndex == 1) {
+        static NSString * hotCellIdentifier= @"hotCellIdentifier";
         TweetCell *cell= [tableView dequeueReusableCellWithIdentifier:hotCellIdentifier];
-        if (!cell) {
+        if (cell == nil) {
         cell= [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:hotCellIdentifier];
-        //cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        cell.clipsToBounds = YES;
         Tweet *tweet= _hotTweetsArray[indexPath.row];
         cell.tweet = tweet;
         return cell;

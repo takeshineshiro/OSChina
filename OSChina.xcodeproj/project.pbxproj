@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18049E6418D98EF500D89735 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18049E6318D98EF500D89735 /* HMSegmentedControl.m */; };
 		18049E6718D9951700D89735 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18049E6618D9951700D89735 /* BaseViewController.m */; };
+		180E682818E02E510077ABC8 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E682718E02E510077ABC8 /* TTTAttributedLabel.m */; };
 		5AE26A047F974A92BC7B388C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4450FED5F3434D36AD71A86A /* libPods.a */; };
 		C22E870118DB4E0B00883035 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E870018DB4E0B00883035 /* libxml2.dylib */; };
 		C22E8B1318DB522600883035 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22E8B1218DB522600883035 /* ImageIO.framework */; };
@@ -131,6 +132,8 @@
 		18049E6318D98EF500D89735 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		18049E6518D9951700D89735 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		18049E6618D9951700D89735 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		180E682618E02E510077ABC8 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
+		180E682718E02E510077ABC8 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		4450FED5F3434D36AD71A86A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C22E870018DB4E0B00883035 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		C22E8B1218DB522600883035 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -343,6 +346,15 @@
 				18049E6318D98EF500D89735 /* HMSegmentedControl.m */,
 			);
 			path = SegmentedControl;
+			sourceTree = "<group>";
+		};
+		180E682518E02E510077ABC8 /* TTTAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				180E682618E02E510077ABC8 /* TTTAttributedLabel.h */,
+				180E682718E02E510077ABC8 /* TTTAttributedLabel.m */,
+			);
+			path = TTTAttributedLabel;
 			sourceTree = "<group>";
 		};
 		C2394B4E18A932DD006B9C59 /* Utiles */ = {
@@ -784,6 +796,7 @@
 		C2F5121C188EC7AD0048AE7F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				180E682518E02E510077ABC8 /* TTTAttributedLabel */,
 				C285F82118DCB4AE001F8006 /* EGOTableViewPullRefresh */,
 				C285F81A18DC9A16001F8006 /* AMAttributedHighlightLabel */,
 				C27F621618D9DA6E00DD251E /* SVPullToRefresh */,
@@ -1035,6 +1048,7 @@
 				C250EDAD18AB793800A6E20F /* UIApplication+BxExtension.m in Sources */,
 				C2EBD46818B1094C004ECC94 /* Post.m in Sources */,
 				C2E8C9B118AD31EF0011B5C4 /* BaseMainViewController.m in Sources */,
+				180E682818E02E510077ABC8 /* TTTAttributedLabel.m in Sources */,
 				C250EDA218AB6AA300A6E20F /* NSString+BxExtension.m in Sources */,
 				C250EDBA18ABD36A00A6E20F /* BlogCell.m in Sources */,
 				C285F82F18DCB4AE001F8006 /* EGORefreshTableHeaderView.m in Sources */,
