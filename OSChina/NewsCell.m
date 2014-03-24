@@ -51,7 +51,7 @@
 }
 
 -(void)layoutSubviews{
-
+    [super layoutSubviews];
    
     titleLable.text =_news.title;
     createdLabel.text = [NSString stringWithFormat:@"%@发表于%@",_news.author,[_news.pubDate intervalSinceNow]];

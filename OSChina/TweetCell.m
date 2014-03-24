@@ -7,22 +7,24 @@
 //
 
 #import "TweetCell.h"
-#import "UIImageView+AFNetworking.h"
+//#import "UIImageView+AFNetworking.h"
 #import "RTLabel.h"
 #import "AMAttributedHighlightLabel.h"
 #import "TTTAttributedLabel.h"
+#import "UIImageView+WebCache.h"
 @interface TweetCell()
 
 @end
 @implementation TweetCell{
 
 
-    UIImageView *headIcon;
-    UILabel * authorLable;
-     UILabel * bodyLable;
-     UILabel * createdLabel;
+     UIImageView *headIcon;
+     UIImageView *replyCountIcon;
+     UILabel * authorLable;
+     TTTAttributedLabel * bodyLable;
+     UILabel * createdTime;
      UILabel * repliesCountLabel;
-     UIImageView *separLine;
+    
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -30,20 +32,15 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-       headIcon= [[UIImageView alloc] initWithFrame:CGRectZero];
-       headIcon.layer.cornerRadius = 20.0f;
-       headIcon.layer.MasksToBounds = YES;
-       headIcon.layer.borderWidth = 1.0f;
-        headIcon.layer.borderColor = [[UIColor grayColor] CGColor];
-        //[self.contentView addSubview:headIcon];
-        
+        headIcon= [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 40, 40)];
+        [self.contentView addSubview:headIcon];
         authorLable = [[UILabel alloc] initWithFrame:CGRectZero];
         authorLable.font = [UIFont systemFontOfSize:14.0f];
         authorLable.backgroundColor = [UIColor clearColor];
         authorLable.textColor = RGB(69, 176, 222);
-        //[self.contentView addSubview:authorLable];
+        [self.contentView addSubview:authorLable];
        
-        bodyLable = [[UILabel alloc] initWithFrame:CGRectMake(55,40,250,200)];
+        bodyLable = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(55,40,250,200)];
         bodyLable.backgroundColor = [UIColor clearColor];
         bodyLable.numberOfLines = 0;
         bodyLable.textColor = [UIColor blackColor];
@@ -51,38 +48,45 @@
         bodyLable.font = [UIFont systemFontOfSize:15.0f];
 		[self.contentView addSubview:bodyLable];
         
-        createdLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        createdLabel.font = [UIFont systemFontOfSize:15.f];
-        createdLabel.backgroundColor = [UIColor clearColor];
-        createdLabel.textColor = [UIColor blackColor];
-        
-        [self.contentView addSubview:createdLabel];
-        
+        createdTime = [[UILabel alloc] initWithFrame:CGRectZero];
+        createdTime.textColor = [UIColor lightGrayColor];
+        createdTime.font = [UIFont systemFontOfSize:12.0f];
+        createdTime.backgroundColor = [UIColor clearColor];
+        [self.contentView addSubview:createdTime];
+       
+        replyCountIcon= [[UIImageView alloc] initWithFrame:CGRectMake(270, 5, 20, 20)];
+        replyCountIcon.image = [UIImage imageNamed:@"icon_feedback"];
+        [self.contentView addSubview:replyCountIcon];
         repliesCountLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        repliesCountLabel.font = [UIFont systemFontOfSize:15.f];
+        repliesCountLabel.font = [UIFont systemFontOfSize:14.f];
         repliesCountLabel.backgroundColor = [UIColor clearColor];
-        repliesCountLabel.textColor = [UIColor whiteColor];
+        repliesCountLabel.textColor = RGB(69, 176, 222);
         repliesCountLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:repliesCountLabel];
         
-//        separLine= [[UIImageView alloc] initWithFrame:CGRectZero];
-//        separLine.image = [UIImage imageNamed:@"separateLine"];
-//        [self.contentView addSubview:separLine];
     }
     return self;
 }
 
 -(void) layoutSubviews{
-    
+    [super layoutSubviews];
     
     [headIcon setImageWithURL:[NSURL URLWithString:_tweet.portrait] placeholderImage:nil];
     headIcon.frame = CGRectMake(10, 5, 40, 40);
-    authorLable.frame = CGRectMake(headIcon.right+10, 10, 250, 15);
+    headIcon.layer.cornerRadius = 20.0f;
+    headIcon.layer.MasksToBounds = YES;
+    headIcon.layer.borderWidth = 1.0f;
+    headIcon.layer.borderColor = [[UIColor grayColor] CGColor];
+    authorLable.frame = CGRectMake(55, 5, 250, 15);
     authorLable.text =_tweet.author;
+    createdTime.frame = CGRectMake(55, authorLable.bottom+5, 250, 15);
+    createdTime.text = [_tweet.pubDate intervalSinceNow] ;
+    repliesCountLabel.frame =CGRectMake(replyCountIcon.right, replyCountIcon.top, 20, 20);
+    repliesCountLabel.text = _tweet.commentCount;
+    bodyLable.numberOfLines = 0;
+    bodyLable.lineBreakMode = NSLineBreakByCharWrapping;
     UIFont *font = [UIFont systemFontOfSize:15.0f];
-   
-    CGSize size = CGSizeMake(250,CGFLOAT_MAX);
-    //计算实际frame大小，并将label的frame变成实际大小
+    CGSize size = CGSizeMake(260,MAXFLOAT);
     //CGSize labelsize = [_tweet.body sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
     NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                           font, NSFontAttributeName,
@@ -91,16 +95,15 @@
                                             options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                          attributes:attributesDictionary
                                             context:nil];
+    bodyLable.frame = CGRectMake(headIcon.right,headIcon.bottom+5,frame.size.width,frame.size.height);
     [bodyLable setText:_tweet.body];
-    bodyLable.frame = CGRectMake(0,0,frame.size.width,frame.size.height);
-    //separLine.frame = CGRectMake(20, bodyLable.bottom+10, 300, 1);
+   
     
     
 }
-+(CGFloat) getCurrTweetCellHright:(Tweet*) tweet{
++(CGFloat) getCurrTweetCellHeight:(Tweet*) tweet{
    
-    CGSize size = CGSizeMake(250,CGFLOAT_MAX);
-    //计算实际frame大小，并将label的frame变成实际大小
+    CGSize size = CGSizeMake(260,MAXFLOAT);
     UIFont *font = [UIFont systemFontOfSize:15.0f];
     //CGSize optimumSize = [tweet.body sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
     NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:

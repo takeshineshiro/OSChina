@@ -113,16 +113,19 @@
 #pragma mark - NSObject
 
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
+//- (id)initWithFrame:(CGRect)frame
+//{
+//    
+//}
+
+- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
+    self = [super initWithFrame:frame style:style];
     if (self) {
         self.tableMode = RefreshTableViewModeNormal;
     }
     return self;
+
 }
-
-
 
 #pragma mark - Actions Public
 

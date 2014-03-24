@@ -9,14 +9,22 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.6.2):
     - DTFoundation/Core
+  - SDWebImage (3.5.4):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.5.4)
+  - TTTAttributedLabel (1.9.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.0)
   - DTCoreText
+  - SDWebImage
+  - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
   DTCoreText: 4d56bb74ff05a3b2415fc15fccc4b5689ed3119c
   DTFoundation: 7c69990fa3cb7655cafa95ab59c3fcea014460f0
+  SDWebImage: 1a62010700adbba823b621fc217906739dbf6aa5
+  TTTAttributedLabel: 3299d80e6cc066676fd6ac44276a2b0baaa1e965
 
 COCOAPODS: 0.29.0

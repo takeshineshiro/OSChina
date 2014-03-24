@@ -9,46 +9,63 @@
 #import "BlogCell.h"
 
 @interface BlogCell()
-@property (nonatomic, strong) UILabel *titleLable;
-@property (nonatomic, strong) UILabel *createdLabel;
-@property (nonatomic, strong) UILabel *repliesCountLabel;
+
 @end
-@implementation BlogCell
+@implementation BlogCell{
+
+    UIImageView *separLine;
+    UILabel *titleLable;
+    UILabel *createdLabel;
+    UILabel *repliesCountLabel;
+    UIImageView *feedBack;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.titleLable = [[UILabel alloc] initWithFrame:CGRectZero];
-        self.titleLable.font = [UIFont boldSystemFontOfSize:15];
-        self.titleLable.backgroundColor = [UIColor clearColor];
-        self.titleLable.textColor = [UIColor blackColor];
-        [self.contentView addSubview:self.titleLable];
-        
-        self.createdLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        self.createdLabel.font = [UIFont systemFontOfSize:15.f];
-        self.createdLabel.backgroundColor = [UIColor clearColor];
-        self.createdLabel.textColor = [UIColor blackColor];
-        
-        [self.contentView addSubview:self.createdLabel];
-        
-        self.repliesCountLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        self.repliesCountLabel.font = [UIFont systemFontOfSize:15.f];
-        self.repliesCountLabel.backgroundColor = [UIColor clearColor];
-        self.repliesCountLabel.textColor = [UIColor whiteColor];
-        self.repliesCountLabel.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:self.repliesCountLabel];
+        titleLable = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 40)];
+        titleLable.font = [UIFont boldSystemFontOfSize:16];
+        titleLable.backgroundColor = [UIColor clearColor];
+        titleLable.textColor = [UIColor blackColor];
+        [self.contentView addSubview:titleLable];
+        separLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, 320, 0.5)];
+        separLine.image = [[UIImage imageNamed:@"separateLine"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+        [self.contentView addSubview:separLine];
+        createdLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLable.left, separLine.bottom+10, 200, 20)];
+        createdLabel.font = [UIFont systemFontOfSize:14.f];
+        createdLabel.backgroundColor = [UIColor clearColor];
+        createdLabel.textColor = [UIColor lightGrayColor];
+        [self.contentView addSubview:createdLabel];
+        feedBack = [[UIImageView alloc] initWithFrame:CGRectMake(250, separLine.bottom+15, 17, 15)];
+        feedBack.image = [UIImage imageNamed:@"icon_feedback"];
+        [self.contentView addSubview:feedBack];
+        repliesCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(feedBack.right+5, feedBack.top, 40, 14)];
+        repliesCountLabel.font = [UIFont systemFontOfSize:14.f];
+        repliesCountLabel.backgroundColor = [UIColor clearColor];
+        repliesCountLabel.textColor = RGB(74, 171, 218);
+        repliesCountLabel.textAlignment = NSTextAlignmentLeft;
+        [self.contentView addSubview:repliesCountLabel];
     }
     return self;
 }
 -(void)layoutSubviews{
     
-    self.titleLable.frame = CGRectMake(20, 10, self.width-40, 20);
-    self.titleLable.text =_blog.blogTitle;
-    self.createdLabel.frame = CGRectMake(self.titleLable.left, self.titleLable.bottom+10, 200, 20);
-    self.createdLabel.text = [NSString stringWithFormat:@"%@发表于%@",_blog.authorname,[_blog.pubDate intervalSinceNow]];
+    [super layoutSubviews];
+    titleLable.text =_blog.blogTitle;
+    createdLabel.text = [NSString stringWithFormat:@"%@发表于%@",_blog.authorname,[_blog.pubDate intervalSinceNow]];
+    repliesCountLabel.text =_blog.commentCount ;
+}
+-(void)setFrame:(CGRect)frame
+
+{
+    
+    frame.origin.x += 5;
+    frame.size.width -= 10;
+    [super setFrame:frame];
     
 }
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

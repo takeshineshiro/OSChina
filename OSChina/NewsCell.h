@@ -11,5 +11,4 @@
 @interface NewsCell : UITableViewCell
 
 @property (nonatomic,strong) NewsObject *news;
--(void) setsContent:(NewsObject *)news;
 @end

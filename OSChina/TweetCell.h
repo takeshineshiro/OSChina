@@ -11,5 +11,5 @@
 @interface TweetCell : UITableViewCell
 
 @property (nonatomic, strong) Tweet *tweet;
-+(CGFloat) getCurrTweetCellHright:(Tweet*) tweet;
++(CGFloat) getCurrTweetCellHeight:(Tweet*) tweet;
 @end

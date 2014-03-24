@@ -111,7 +111,6 @@
     }
     NewsObject *news= _newsArray[indexPath.section];
     cell.news =news;
-    //[cell setsContent:news];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;{

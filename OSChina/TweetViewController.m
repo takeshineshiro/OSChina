@@ -58,7 +58,7 @@
     _tweetTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height-60) style:UITableViewStylePlain];
     _tweetTableView.dataSource = self;
     _tweetTableView.delegate = self;
-    _tweetTableView.backgroundColor = [UIColor clearColor];
+   // _tweetTableView.backgroundColor = [UIColor clearColor];
     //_tweetTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tweetTableView];
     
@@ -92,22 +92,27 @@
 
 }
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (_currSelectIndex == 0) {
+    if (_currSelectIndex == 0&& [_latestTweetsArray count]) {
+        _tweetTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         return [_latestTweetsArray count];
-    }else{
+    }
+    if (_currSelectIndex == 1&&  [_hotTweetsArray count]){
+        _tweetTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         return [_hotTweetsArray count];
     }
+    _tweetTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    return 0;
 }
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat result = 0;
     if (_currSelectIndex == 0) {
         Tweet *tweet= _latestTweetsArray[indexPath.row];
-        result= [TweetCell getCurrTweetCellHright:tweet];
+        result= [TweetCell getCurrTweetCellHeight:tweet];
         return result;
     }
     if (_currSelectIndex == 1) {
         Tweet *tweet= _hotTweetsArray[indexPath.row];
-        result= [TweetCell getCurrTweetCellHright:tweet];
+        result= [TweetCell getCurrTweetCellHeight:tweet];
         return result;
     }
      return 0;
@@ -117,14 +122,13 @@
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
    
        if (_currSelectIndex == 0) {
-        static NSString * newCellIdentifier= @"newCellIdentifier";
+        static NSString * newCellIdentifier = @"newCellIdentifier";
         TweetCell *cell= [tableView dequeueReusableCellWithIdentifier:newCellIdentifier];
         if (cell ==nil) {
-        cell= [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:newCellIdentifier];
+         cell= [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:newCellIdentifier];
         }
-        cell.clipsToBounds = YES;
-        Tweet *tweet= _latestTweetsArray[indexPath.row];
-        cell.tweet = tweet;
+        Tweet *currtweet= _latestTweetsArray[indexPath.row];
+        cell.tweet = currtweet;
         return cell;
     }
     if (_currSelectIndex == 1) {
@@ -152,25 +156,6 @@
 }
 
 
-#pragma mark -
-#pragma mark Data Source Loading / Reloading Methods
-
-//- (void)reloadTableViewDataSource{
-//	
-//	_reloading = YES;
-//	
-//}
-//
-//- (void)doneLoadingTableViewData{
-//	
-//	_reloading = NO;
-//	[_refreshTableHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tweetTableView];
-//	
-//}
-//
-//
-#pragma mark -
-#pragma mark UIScrollViewDelegate Methods
 
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{

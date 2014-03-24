@@ -44,7 +44,7 @@
 
 -(void) initNewsTableView{
     
-    self.blogTableView =[[OSTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height-60) ];
+    self.blogTableView =[[OSTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height-60) style:UITableViewStyleGrouped];
     self.blogTableView.delegate = self;
     self.blogTableView.dataSource = self;
     self.blogTableView.delegateRefresh = self;
@@ -90,20 +90,44 @@
     return cell;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section ==0) {
+        return 0.001;
+    }
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
-    return [_blogArray count];
+    return 0.001;
+    
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+   
+    return 1 ;
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;{
+    if ([_blogArray count]) {
+        self.blogTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        return [_blogArray count];
+    }
+    self.blogTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    return 0 ;
+    
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    return 75;
     
 }
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([_blogArray objectAtIndexOrNil:indexPath.row]) {
        BlogDetailViewController *blogDetail = [[BlogDetailViewController alloc] init];
-        Blog * currBlog = [_blogArray objectAtIndexOrNil:indexPath.row];
+        Blog * currBlog = [_blogArray objectAtIndexOrNil:indexPath.section];
         blogDetail.blogID = currBlog.blogID;
         [self.navigationController pushViewController:blogDetail animated:YES];
     }
