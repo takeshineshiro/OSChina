@@ -85,7 +85,7 @@
         cell =[[BlogCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
         
     }
-    Blog *blog= [_blogArray objectAtIndexOrNil:indexPath.row];
+    Blog *blog= [_blogArray objectAtIndexOrNil:indexPath.section];
     cell.blog =blog;
     return cell;
 }
