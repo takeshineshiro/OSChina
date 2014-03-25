@@ -12,12 +12,14 @@
 #import <CoreText/CoreText.h>
 #import "DTCoreText.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "ShareActivityView.h"
 @interface NewsDetailViewController ()<UIGestureRecognizerDelegate,DTAttributedTextContentViewDelegate,DTLazyImageViewDelegate>
 @property (nonatomic, strong) UIWebView *newsDetailWebView;
 @property (nonatomic, strong) NewsDetail *currNews;
 @property (nonatomic, strong) NSMutableSet *mediaPlayers;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) dispatch_queue_t currLoadQueue;
+@property (nonatomic, strong) ShareActivityView *activityView;
 @end
 
 @implementation NewsDetailViewController{
@@ -45,17 +47,76 @@
 	_textView.textDelegate = self;
 	_textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	[self.view addSubview:_textView];
+    
+    UIImageView *imageComment= [[UIImageView alloc] initWithFrame:CGRectMake(0, self.view.height-64-50, 320, 50)];
+    imageComment.image =[[UIImage imageNamed:@"bg_comment"] stretchableImageWithLeftCapWidth:0 topCapHeight:10];
+    imageComment.userInteractionEnabled = YES;
+    [self.view addSubview:imageComment];
+    
+    UITextField *commentPublish=[[UITextField alloc] initWithFrame:CGRectMake(10, 10, 200, 30)];
+    commentPublish.background = [[UIImage imageNamed:@"bg_comment_textfiled"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    commentPublish.placeholder = @"发表评论";
+    [imageComment addSubview:commentPublish];
+    
+    UIButton *collectBtn= [UIButton buttonWithType:UIButtonTypeCustom];
+    collectBtn.frame = CGRectMake(commentPublish.right+10, 10, 30, 30);
+    collectBtn.backgroundColor = [UIColor redColor];
+    [collectBtn setImage:[UIImage imageNamed:@"icon_user_collect"] forState:UIControlStateNormal];
+    [imageComment addSubview:collectBtn];
+    
+    UIButton *shareBtn= [UIButton buttonWithType:UIButtonTypeCustom];
+    [shareBtn addTarget:self action:@selector(shareContentHandle) forControlEvents:UIControlEventTouchUpInside];
+    shareBtn.frame = CGRectMake(collectBtn.right+10, 10, 30, 30);
+    [shareBtn setImage:[UIImage imageNamed:@"icon_user_collect"] forState:UIControlStateNormal];
+    [imageComment addSubview:shareBtn];
+    
     __weak NewsDetailViewController *weakSelf = self;
     [[OSAPIClient shareClient] getnewsDetailWithNewID:_newsID RequestResult:^(id resultDatas, NSError *error) {
         if (resultDatas &&[resultDatas isKindOfClass:[NSDictionary class]]) {
             NewsDetail* currNews = [[NewsDetail alloc] initWithDictionary:resultDatas];
-             [self loadHtmlDataHandle:currNews.newsBody];
+             [weakSelf loadHtmlDataHandle:currNews.newsBody];
         }
     }];
     
 }
 
+-(void) shareContentHandle{
+    if (!self.activityView) {
+        self.activityView = [[ShareActivityView alloc]initWithTitle:@"分享到" referView:self.view];
+        
+        //横屏会变成一行6个, 竖屏无法一行同时显示6个, 会自动使用默认一行4个的设置.
+        self.activityView.numberOfButtonPerLine = 6;
+        
+        ButtonView *bv = [[ButtonView alloc]initWithText:@"新浪微博" image:[UIImage imageNamed:@"icon_share_sinaweibo"] handler:^(ButtonView *buttonView){
+            
+        }];
+        
+        [self.activityView addButtonView:bv];
+        
+        bv = [[ButtonView alloc]initWithText:@"腾讯微博" image:[UIImage imageNamed:@"icon_share_txweibo"] handler:^(ButtonView *buttonView){
+            
+        }];
+        [self.activityView addButtonView:bv];
+        
+        bv = [[ButtonView alloc]initWithText:@"微信好友" image:[UIImage imageNamed:@"icon_share_weixin"] handler:^(ButtonView *buttonView){
+            
+        }];
+        [self.activityView addButtonView:bv];
+        
+        bv = [[ButtonView alloc]initWithText:@"微信朋友圈" image:[UIImage imageNamed:@"icon_share_wxfrend"] handler:^(ButtonView *buttonView){
+            
+        }];
+        [self.activityView addButtonView:bv];
+        
+       
+        
+    }
+    
+    [self.activityView show];
 
+ 
+
+}
 
 
 - (NSAttributedString *)_attributedStringForSnippetUsingiOS6Attributes:(NSString *)html
