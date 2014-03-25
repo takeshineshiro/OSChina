@@ -27,7 +27,8 @@
         self.body = dict[@"body"];
         self.pubDate = [NSDate normalFormatDateFromString:dict[@"pubDate"]];
         self.imgSmall = dict[@"imgSmall"];
-        self.imgBig = dict[@"imgSmall"];
+        self.imgBig = dict[@"imgBig"];
+        
     }
     return self;
 }

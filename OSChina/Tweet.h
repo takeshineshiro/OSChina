@@ -27,7 +27,7 @@
 @property (nonatomic, strong) NSString *body;
 @property (nonatomic, strong) NSString *appclient;
 @property (nonatomic, strong) NSString *commentCount;
-@property (nonatomic, strong) NSDate   *pubDate;
+@property (nonatomic, strong) NSDate  *pubDate;
 @property (nonatomic, strong) NSString *imgSmall;
 @property (nonatomic, strong) NSString *imgBig;
 

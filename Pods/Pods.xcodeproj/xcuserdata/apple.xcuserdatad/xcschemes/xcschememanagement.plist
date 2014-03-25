@@ -19,6 +19,16 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>Pods-SDWebImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Pods-TTTAttributedLabel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -27,6 +37,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>536672117865433E8D513175</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6A1CCF157B434340AE1F4498</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8CAAA48CF6104F578FAA3CBC</key>
 		<dict>
 			<key>primary</key>
@@ -42,7 +62,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>CBB49F30AD6F48A68B1B618A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D075759F08A74487B96CD4F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EE1C30CAE9EB4D8AA9E2F9C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>EEF05E5A1E834BB08E6E048C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FBA4B35C03CF4D6B9E5E8410</key>
 		<dict>
 			<key>primary</key>
 			<true/>
