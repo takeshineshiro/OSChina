@@ -129,6 +129,7 @@
         }
         Tweet *currtweet= _latestTweetsArray[indexPath.row];
         cell.tweet = currtweet;
+        NSLog(@"111-----%@",currtweet.portrait);
         return cell;
     }
     if (_currSelectIndex == 1) {

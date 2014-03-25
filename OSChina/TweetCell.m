@@ -86,11 +86,12 @@
     authorLable.text =_tweet.author;
     createdTime.frame = CGRectMake(55, authorLable.bottom+5, 250, 15);
     createdTime.text = [_tweet.pubDate intervalSinceNow] ;
-    repliesCountLabel.frame =CGRectMake(replyCountIcon.right, replyCountIcon.top, 20, 20);
+    repliesCountLabel.frame =CGRectMake(replyCountIcon.right+3, replyCountIcon.top, 45, 20);
+    repliesCountLabel.textAlignment = NSTextAlignmentLeft;
     repliesCountLabel.text = _tweet.commentCount;
     bodyLable.numberOfLines = 0;
     bodyLable.lineBreakMode = NSLineBreakByWordWrapping;
-    UIFont *font = [UIFont systemFontOfSize:15.0f];
+    UIFont *font = [UIFont systemFontOfSize:14.0f];
     CGSize size = CGSizeMake(260,MAXFLOAT);
     //CGSize labelsize = [_tweet.body sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
     NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -131,7 +132,7 @@
             image=[UIImage imageWithCGImage:image.CGImage scale:scale orientation:UIImageOrientationUp];
         }
         size=image.size;
-        weakSelf.contentImage.frame=CGRectMake(20,top, width, height);
+        weakSelf.contentImage.frame=CGRectMake(50,top, width, height);
         weakSelf.contentImage.image=image;
         UITapGestureRecognizer * tap=[[UITapGestureRecognizer alloc]initWithTarget:weakSelf action:@selector(lookImageAction)];
         weakSelf.contentImage.userInteractionEnabled=YES;
@@ -157,7 +158,7 @@
                                    attributes:attributesDictionary
                                       context:nil];
     if (tweet.imgSmall&&[tweet.imgSmall isKindOfClass:[NSString class]]) {
-       cellHeight+=150;
+       cellHeight+=125;
     }
     return frame.size.height+cellHeight;
     
