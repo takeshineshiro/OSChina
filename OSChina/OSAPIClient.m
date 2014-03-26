@@ -16,6 +16,7 @@
 #import "Post.h"
 #import "Tweet.h"
 #import "NewsObject.h"
+#import "BlogObject.h"
 static NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 /*资讯列表*/
 static NSString *const kNewsListURLString = @"news_list";
@@ -139,7 +140,7 @@ static NSString *const kTweetListURLString = @"tweet_list";
         NSLog(@"blog---%@",operation.responseString);
         NSDictionary *dict= [[XMLParser shareInstance] parseData:operation.responseData];
         NSArray *blogsArray= [XMLParser getDataAtPath:@"oschina.blogs.blog" fromResultObject:dict];
-        Blog *blogList = [Blog entityWithArray:blogsArray];
+        BlogObject *blogList = [BlogObject entityWithArray:blogsArray];
         blocks(blogList,nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         blocks(nil,error);

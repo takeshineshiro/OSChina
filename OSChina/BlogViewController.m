@@ -11,6 +11,7 @@
 #import "SVPullToRefresh.h"
 #import "BlogDetailViewController.h"
 #import "OSTableView.h"
+#import "BlogObject.h"
 @interface BlogViewController ()<RefreshTableViewDelegate>
 
 @property (nonatomic, assign) NSInteger currPageIndex;
@@ -85,8 +86,8 @@
         cell =[[BlogCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
         
     }
-    Blog *blog= [_blogArray objectAtIndexOrNil:indexPath.section];
-    cell.blog =blog;
+    BlogObject *blog= [_blogArray objectAtIndexOrNil:indexPath.section];
+    cell.blog = blog;
     return cell;
 }
 

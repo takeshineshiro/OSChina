@@ -17,6 +17,7 @@
 		18CF798A18E2C8D500DDC763 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CF798918E2C8D500DDC763 /* Security.framework */; };
 		18CF798C18E2C97C00DDC763 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CF798B18E2C97C00DDC763 /* Accounts.framework */; };
 		18CF798E18E2C9A400DDC763 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CF798D18E2C9A400DDC763 /* Social.framework */; };
+		18CF799118E2E1C700DDC763 /* BlogObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CF799018E2E1C700DDC763 /* BlogObject.m */; };
 		5AE26A047F974A92BC7B388C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4450FED5F3434D36AD71A86A /* libPods.a */; };
 		C21F735518E1E7F400A3669D /* bg_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21F735418E1E7F400A3669D /* bg_comment@2x.png */; };
 		C21F735718E1EBA600A3669D /* bg_comment_textfiled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21F735618E1EBA600A3669D /* bg_comment_textfiled@2x.png */; };
@@ -161,6 +162,8 @@
 		18CF798918E2C8D500DDC763 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		18CF798B18E2C97C00DDC763 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		18CF798D18E2C9A400DDC763 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		18CF798F18E2E1C700DDC763 /* BlogObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogObject.h; sourceTree = "<group>"; };
+		18CF799018E2E1C700DDC763 /* BlogObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogObject.m; sourceTree = "<group>"; };
 		4450FED5F3434D36AD71A86A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21F735418E1E7F400A3669D /* bg_comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_comment@2x.png"; sourceTree = "<group>"; };
 		C21F735618E1EBA600A3669D /* bg_comment_textfiled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_comment_textfiled@2x.png"; sourceTree = "<group>"; };
@@ -874,6 +877,8 @@
 				C23F259A18B4FBC900F805CF /* BlogDetail.m */,
 				C23F259C18B5188B00F805CF /* Tweet.h */,
 				C23F259D18B5188B00F805CF /* Tweet.m */,
+				18CF798F18E2E1C700DDC763 /* BlogObject.h */,
+				18CF799018E2E1C700DDC763 /* BlogObject.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1154,6 +1159,7 @@
 				C250EDA218AB6AA300A6E20F /* NSString+BxExtension.m in Sources */,
 				C250EDBA18ABD36A00A6E20F /* BlogCell.m in Sources */,
 				C285F82F18DCB4AE001F8006 /* EGORefreshTableHeaderView.m in Sources */,
+				18CF799118E2E1C700DDC763 /* BlogObject.m in Sources */,
 				C2905AD318B3036200F970BB /* CMDataStorage.m in Sources */,
 				C250EDB018AB7FD700A6E20F /* UIImage+BxExtension.m in Sources */,
 				C285F82018DCB213001F8006 /* OSTableView.m in Sources */,

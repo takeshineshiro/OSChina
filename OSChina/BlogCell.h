@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Blog.h"
+#import "BlogObject.h"
 @interface BlogCell : UITableViewCell
 
-@property (nonatomic,strong) Blog *blog;
+@property (nonatomic,strong) BlogObject *blog;
 @end
