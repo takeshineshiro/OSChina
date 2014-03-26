@@ -21,4 +21,5 @@ typedef void(^RequestResultBlocks)(id  resultDatas,NSError *error);
 -(void) getblogDetailWithBlogID:(NSString *)blogID RequestResult:(RequestResultBlocks) blocks;
 -(void) getTweetListWithID:(NSInteger) tweetID PageIndex:(NSInteger) currIndex RequestResult:
 (void (^)(id resultDatas,NSInteger tweetCount,NSError *error)) blocks;
+-(void) userLoginName:(NSString*) userName passWord:(NSString*) password RequestResult:(RequestResultBlocks) blocks;
 @end

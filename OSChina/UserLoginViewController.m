@@ -12,7 +12,11 @@
 
 @end
 
-@implementation UserLoginViewController
+@implementation UserLoginViewController{
+
+    UITextField *userTextFiled;
+    UITextField *passwordTextFiled;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,7 +49,7 @@
     userName.backgroundColor = [UIColor clearColor];
     userName.text = @"  用户名: ";
     //[self.view addSubview:userName];
-    UITextField *userTextFiled= [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    userTextFiled= [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [self.view addSubview:userTextFiled];
     userTextFiled.background = [UIImage imageNamed:@"bg_login_textfiled"];
     userTextFiled.leftView = userName;
@@ -53,7 +57,7 @@
     UILabel *userPass= [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
     userPass.text = @"  密  码：";
     userPass.font = [UIFont systemFontOfSize:18.0f];
-    UITextField *passwordTextFiled= [[UITextField alloc] initWithFrame:CGRectMake(0, 50, 320, 44)];
+    passwordTextFiled= [[UITextField alloc] initWithFrame:CGRectMake(0, 50, 320, 44)];
     passwordTextFiled.leftView = userPass;
     passwordTextFiled.leftViewMode = UITextFieldViewModeAlways;
     passwordTextFiled.background = [UIImage imageNamed:@"bg_login_textfiled"];
@@ -62,11 +66,19 @@
     UIButton *loginBtn= [UIButton buttonWithType:UIButtonTypeCustom];
     loginBtn.frame = CGRectMake(0, passwordTextFiled.bottom+30, 320, 50);
     [loginBtn setBackgroundImage:[UIImage imageNamed:@"Navibarbg"] forState:UIControlStateNormal];
-    //loginBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Navibarbg"]];
+    [loginBtn addTarget:self action:@selector(userLoginHandle) forControlEvents:UIControlEventTouchUpInside];
     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [loginBtn setTitle:@"登     录" forState:UIControlStateNormal];
     [self.view addSubview:loginBtn];
     
+}
+-(void) userLoginHandle{
+     [[OSAPIClient shareClient] userLoginName:userTextFiled.text passWord:passwordTextFiled.text RequestResult:^(id resultDatas, NSError *error) {
+         if ([resultDatas isKindOfClass:[NSString class]]&&[resultDatas isEqualToString:@"1"]) {
+              [self.navigationController popViewControllerAnimated:NO];
+         }
+     }];
+ 
 }
 -(void) popCurrViewController{
     [self.navigationController popViewControllerAnimated:NO];

@@ -42,6 +42,7 @@
 		C2524FB418D8459C005DECE4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2524FB318D8459C005DECE4 /* CoreText.framework */; };
 		C253B5A718E320D2005E2D63 /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C253B5A618E320D2005E2D63 /* UserLoginViewController.m */; };
 		C253B5AB18E32723005E2D63 /* bg_login_textfiled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C253B5AA18E32723005E2D63 /* bg_login_textfiled@2x.png */; };
+		C253B5AE18E34456005E2D63 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C253B5AD18E34456005E2D63 /* UserInfoViewController.m */; };
 		C25FF326189018AA00D34053 /* icon_navi_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C25FF325189018AA00D34053 /* icon_navi_menu@2x.png */; };
 		C25FF328189018B900D34053 /* icon_navi_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C25FF327189018B900D34053 /* icon_navi_setting@2x.png */; };
 		C25FF32E189028EC00D34053 /* OSAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C25FF32D189028EC00D34053 /* OSAPIClient.m */; };
@@ -189,6 +190,8 @@
 		C253B5A518E320D2005E2D63 /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginViewController.h; sourceTree = "<group>"; };
 		C253B5A618E320D2005E2D63 /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginViewController.m; sourceTree = "<group>"; };
 		C253B5AA18E32723005E2D63 /* bg_login_textfiled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_login_textfiled@2x.png"; sourceTree = "<group>"; };
+		C253B5AC18E34456005E2D63 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		C253B5AD18E34456005E2D63 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		C25FF325189018AA00D34053 /* icon_navi_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_navi_menu@2x.png"; sourceTree = "<group>"; };
 		C25FF327189018B900D34053 /* icon_navi_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_navi_setting@2x.png"; sourceTree = "<group>"; };
 		C25FF32918901BC100D34053 /* MacroDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroDefines.h; sourceTree = "<group>"; };
@@ -432,6 +435,8 @@
 			children = (
 				C253B5A518E320D2005E2D63 /* UserLoginViewController.h */,
 				C253B5A618E320D2005E2D63 /* UserLoginViewController.m */,
+				C253B5AC18E34456005E2D63 /* UserInfoViewController.h */,
+				C253B5AD18E34456005E2D63 /* UserInfoViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -1107,6 +1112,7 @@
 				C2FED29418AA3419003D5854 /* UIView+Extension.m in Sources */,
 				C2E8C9AB18AD28BB0011B5C4 /* NewsDetail.m in Sources */,
 				C285F81D18DC9A16001F8006 /* AMAttributedHighlightLabel.m in Sources */,
+				C253B5AE18E34456005E2D63 /* UserInfoViewController.m in Sources */,
 				C250EDAA18AB77AE00A6E20F /* NSDictionary+BxExtension.m in Sources */,
 				C2F51226188ECCB80048AE7F /* SidebarLuvocracyAnimation.m in Sources */,
 				C23EBF4D1892D27700793896 /* TweetViewController.m in Sources */,
