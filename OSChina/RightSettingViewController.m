@@ -10,6 +10,7 @@
 #import "NewsDetailViewController.h"
 #import "SideBarViewController.h"
 #import "UIView+MotionEffect.h"
+#import "UserLoginViewController.h"
 @implementation RightSettingViewController
 
 -(void)viewDidLoad{
@@ -30,6 +31,7 @@
     loginBtn.frame = CGRectMake(100, headIcon.bottom+20, 180, 40);
     loginBtn.titleLabel.textColor = [UIColor whiteColor];
     [loginBtn setTitle:@"用户登录" forState:UIControlStateNormal];
+    [loginBtn addTarget:self action:@selector(userLoginHandle) forControlEvents:UIControlEventTouchUpInside];
     [loginBtn setBackgroundImage:[UIImage imageNamed:@"btn_user_login"] forState:UIControlStateNormal];
     [self.view addSubview:loginBtn];
     
@@ -56,16 +58,18 @@
     
 }
 
+-(void) userLoginHandle{
+    
+    UserLoginViewController *login= [[UserLoginViewController alloc] init];
+    [self.sidebarController.contentViewController.view setHidden:YES];
+    [self.navigationController pushViewController:login animated:NO];
+    
+}
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
     [self.sidebarController.contentViewController.view setHidden:NO];
 }
-- (void)dismissThisViewController
-{
-     NewsDetailViewController *news= [[NewsDetailViewController alloc] init];
-    [self.navigationController pushViewController:news animated:YES];
-    [self.sidebarController.contentViewController.view setHidden:YES];
-}
+
 -(void)viewWillDisappear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:NO];
 }

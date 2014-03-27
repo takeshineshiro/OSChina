@@ -9,12 +9,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-CocoaSecurity.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-DTCoreText.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-DTFoundation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-NSUserDefaults-AESEncryptor.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>536672117865433E8D513175</key>
+		<key>04436C9466714A77808F3EC9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A1CCF157B434340AE1F4498</key>
+		<key>0E53B27871FA4342920466DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CBB49F30AD6F48A68B1B618A</key>
+		<key>239284D76DAC40308C8AB650</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D075759F08A74487B96CD4F4</key>
+		<key>2D21CBDF0CD34F839188D25C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EE1C30CAE9EB4D8AA9E2F9C4</key>
+		<key>4F92EA9483D243158B994F14</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FBA4B35C03CF4D6B9E5E8410</key>
+		<key>61B549DB3E594E4E8B187D99</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9B622CB386F4B42BD61CDE2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F9D90714DAD549789ADE82E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
