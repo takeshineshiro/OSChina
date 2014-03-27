@@ -16,14 +16,6 @@
 #import "Post.h"
 #import "Tweet.h"
 #import "NewsObject.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-#import "BlogObject.h"
-=======
-#import "NSUserDefaults+AESEncryptor.h"
->>>>>>> FETCH_HEAD
-=======
->>>>>>> parent of a1c6f5c... update
 static NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 /*资讯列表*/
 static NSString *const kNewsListURLString = @"news_list";
@@ -147,7 +139,7 @@ static NSString *const kTweetListURLString = @"tweet_list";
         NSLog(@"blog---%@",operation.responseString);
         NSDictionary *dict= [[XMLParser shareInstance] parseData:operation.responseData];
         NSArray *blogsArray= [XMLParser getDataAtPath:@"oschina.blogs.blog" fromResultObject:dict];
-        BlogObject *blogList = [BlogObject entityWithArray:blogsArray];
+        Blog *blogList = [Blog entityWithArray:blogsArray];
         blocks(blogList,nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         blocks(nil,error);

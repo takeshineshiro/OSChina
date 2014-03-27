@@ -63,7 +63,7 @@
     [backBtn addTarget:self action:@selector(popCurrViewController) forControlEvents:UIControlEventTouchUpInside];
     [backBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
     [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
-    [backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+     [backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
     [backBtn setAdjustsImageWhenHighlighted:NO];
     [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [backBtn  setTitle:@"返回" forState:UIControlStateNormal];
