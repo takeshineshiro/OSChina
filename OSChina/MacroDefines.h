@@ -70,5 +70,8 @@
 
 //other
 #define KPopCurrentView  @"KPopCurrentView"
-
 #define DEFAULT_DRAG_UP_BOTTOM_OFFSET 30
+
+#define KAESKEY  @"OSChina7.0"
+#define KUserName  @"userName"
+#define KUserID  @"userid"

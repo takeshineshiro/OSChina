@@ -16,6 +16,7 @@
 #import "Post.h"
 #import "Tweet.h"
 #import "NewsObject.h"
+#import "NSUserDefaults+AESEncryptor.h"
 static NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 /*资讯列表*/
 static NSString *const kNewsListURLString = @"news_list";
@@ -26,6 +27,7 @@ static NSString *const kBlogDetailURLString = @"blog_detail";
 /*讨论区列表*/
 static NSString *const kCommunityListURLString = @"post_list";
 static NSString *const kTweetListURLString = @"tweet_list";
+static NSString *const kLoginURLString = @"login_validate";
 @implementation OSAPIClient
 
 
@@ -48,8 +50,8 @@ static NSString *const kTweetListURLString = @"tweet_list";
 {
     self = [super initWithBaseURL:url];
     if (self) {
-       // [self unregisterHTTPOperationClass:[AFJSONRequestOperation class]];
-       // [self unregisterHTTPOperationClass:[AFImageRequestOperation class]];
+        // [self unregisterHTTPOperationClass:[AFJSONRequestOperation class]];
+        // [self unregisterHTTPOperationClass:[AFImageRequestOperation class]];
         [self registerHTTPOperationClass:[AFXMLRequestOperation class]];
         [self setDefaultHeader:@"Accept" value:@"application/xml"];
         
@@ -59,7 +61,7 @@ static NSString *const kTweetListURLString = @"tweet_list";
 
 -(NSString*) currRequestUniqueIdentifier:(NSURL *) identifie  {
     
-   NSMutableString *str = [NSMutableString stringWithFormat:@"%@ %@",kAPIBaseURLString,identifie];
+    NSMutableString *str = [NSMutableString stringWithFormat:@"%@ %@",kAPIBaseURLString,identifie];
     return [str MD5];
     
 }
@@ -91,7 +93,7 @@ static NSString *const kTweetListURLString = @"tweet_list";
 }
 
 -(void)saveNewsList:(NSArray*) newsList AndUniqueIdentifier:(NSString*) identifier{
-  
+    
     [NewsObject removeDbObjectsWhere:@"all"];
     for (NewsObject * currNew in newsList) {
         NewsObject *newsObject= [[NewsObject alloc] init];
@@ -105,7 +107,7 @@ static NSString *const kTweetListURLString = @"tweet_list";
         newsObject.url = currNew.url;
         [newsObject insertToDb];
     }
-
+    
 }
 #pragma mark 获取资讯详情
 -(void) getnewsDetailWithNewID:(NSString*) Newsid RequestResult:(RequestResultBlocks) blocks{
@@ -148,7 +150,7 @@ static NSString *const kTweetListURLString = @"tweet_list";
 
 #pragma mark 获取博客内容
 -(void) getblogDetailWithBlogID:(NSString *)blogID RequestResult:(RequestResultBlocks) blocks{
-
+    
     NSMutableDictionary *paramters = [NSMutableDictionary dictionaryWithCapacity:1];
     [paramters setValue:blogID forKey:@"id"];
     [self getPath:kBlogDetailURLString parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -159,7 +161,7 @@ static NSString *const kTweetListURLString = @"tweet_list";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         blocks(nil,error);
     }];
-
+    
 }
 #pragma mark 获取资讯详情
 -(void) getBlogDetailWithBlogID:(NSString*) Blogid RequestResult:(RequestResultBlocks) blocks{
@@ -174,7 +176,7 @@ static NSString *const kTweetListURLString = @"tweet_list";
 
 #pragma mark 获取讨论区列表
 -(void) getCommunityListWithType:(NSInteger) currtype PageIndex:(NSInteger) currIndex RequestResult:(RequestResultBlocks) blocks{
-     NSMutableDictionary *paramters = [NSMutableDictionary dictionaryWithCapacity:2];
+    NSMutableDictionary *paramters = [NSMutableDictionary dictionaryWithCapacity:2];
     [paramters setObject:[NSNumber numberWithInteger:currIndex] forKey:@"pageIndex"];
     [paramters setObject:[NSNumber numberWithInteger:currtype] forKey:@"catalog"];
     [self getPath:kCommunityListURLString parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -203,6 +205,28 @@ static NSString *const kTweetListURLString = @"tweet_list";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
+    
+}
 
+-(void) userLoginName:(NSString*) userName passWord:(NSString*) password RequestResult:(RequestResultBlocks) blocks{
+    
+    NSMutableDictionary *paramters= [NSMutableDictionary dictionaryWithCapacity:3];
+    [paramters setObject:userName forKey:@"username"];
+    [paramters setObject:password forKey:@"pwd"];
+    [paramters setObject:@"1" forKey:@"keep_login"];
+    [self postPath:kLoginURLString parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"login --%@",operation.responseString);
+        NSDictionary *dict= [[XMLParser shareInstance] parseData:operation.responseData];
+        NSDictionary *result =  [XMLParser getDataAtPath:@"oschina.result" fromResultObject:dict];
+        if ([[result objectForKey:@"errorCode"] integerValue]) {
+            NSDictionary *userDict = [XMLParser getDataAtPath:@"oschina.user" fromResultObject:dict];
+            [[NSUserDefaults standardUserDefaults] setAESKey:KAESKEY];
+            [[NSUserDefaults standardUserDefaults] encryptValue:userDict [@"name"] withKey:KUserName];
+            [[NSUserDefaults standardUserDefaults] encryptValue:userDict [@"uid"] withKey:KUserID];
+        }
+        blocks([result objectForKey:@"errorCode"],nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 @end

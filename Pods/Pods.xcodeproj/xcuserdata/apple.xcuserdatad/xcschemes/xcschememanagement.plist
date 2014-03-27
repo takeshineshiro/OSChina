@@ -6,83 +6,83 @@
 	<dict>
 		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-CocoaSecurity.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-DTCoreText.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-DTFoundation.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-NSUserDefaults-AESEncryptor.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-SDWebImage.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-TTTAttributedLabel.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>536672117865433E8D513175</key>
+		<key>088B50EF2AA8444C9CC621E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A1CCF157B434340AE1F4498</key>
+		<key>2080BE3EC6D04F45B3DE1897</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8CAAA48CF6104F578FAA3CBC</key>
+		<key>20FA9FE6332041D4BEC726DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9396E685291D498688F5F7AC</key>
+		<key>2EEE5447B9D14EFEA8FFECD9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9D728AE2E5D844189AFF90A3</key>
+		<key>3B771F70BF5D440E9BAC93A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CBB49F30AD6F48A68B1B618A</key>
+		<key>7997C549A210483AA1912C07</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D075759F08A74487B96CD4F4</key>
+		<key>7F7CCF29E55F46478EF06D6E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EE1C30CAE9EB4D8AA9E2F9C4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EEF05E5A1E834BB08E6E048C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FBA4B35C03CF4D6B9E5E8410</key>
+		<key>F88E8E3D4C0B4609BCD4CDCD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
