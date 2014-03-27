@@ -28,6 +28,7 @@ static NSString *const kBlogDetailURLString = @"blog_detail";
 static NSString *const kCommunityListURLString = @"post_list";
 static NSString *const kTweetListURLString = @"tweet_list";
 static NSString *const kLoginURLString = @"login_validate";
+static NSString *const kMyInfURLoString = @"my_information";
 @implementation OSAPIClient
 
 
@@ -207,7 +208,13 @@ static NSString *const kLoginURLString = @"login_validate";
     }];
     
 }
-
+/**
+ *  用户登录
+ *
+ *  @param userName 用户名
+ *  @param password 用户密码
+ *  @param blocks   <#blocks description#>
+ */
 -(void) userLoginName:(NSString*) userName passWord:(NSString*) password RequestResult:(RequestResultBlocks) blocks{
     
     NSMutableDictionary *paramters= [NSMutableDictionary dictionaryWithCapacity:3];
@@ -228,5 +235,24 @@ static NSString *const kLoginURLString = @"login_validate";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
+}
+
+//#define api_my_information @"http://www.oschina.net/action/api/my_information"
+/**
+ *  获取登录的用户信息
+ *
+ *  @param blocks <#blocks description#>
+ */
+-(void) fetchCurrUserInfo:(RequestResultBlocks) blocks{
+
+    NSString *userID= [[NSUserDefaults standardUserDefaults] decryptedValueForKey:KUserID];
+    NSMutableDictionary *paramters= [NSMutableDictionary dictionaryWithCapacity:1];
+    [paramters setObject:userID forKey:@"uid"];
+    [self getPath:kMyInfURLoString parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"login --%@",operation.responseString);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
 }
 @end

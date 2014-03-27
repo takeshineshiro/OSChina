@@ -7,7 +7,7 @@
 //
 
 #import "UserLoginViewController.h"
-
+#import "UserInfoViewController.h"
 @interface UserLoginViewController ()
 
 @end
@@ -26,7 +26,13 @@
     }
     return self;
 }
-
+-(id) initWithLoginResult:(isLoginSuccess)result{
+    self = [super init];
+    if (self) {
+        self.LoginState = result;
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -73,9 +79,15 @@
     
 }
 -(void) userLoginHandle{
+    __weak UserLoginViewController *weakSelf = self;
      [[OSAPIClient shareClient] userLoginName:userTextFiled.text passWord:passwordTextFiled.text RequestResult:^(id resultDatas, NSError *error) {
          if ([resultDatas isKindOfClass:[NSString class]]&&[resultDatas isEqualToString:@"1"]) {
-              [self.navigationController popViewControllerAnimated:NO];
+                UserInfoViewController  *userInfo = [[UserInfoViewController alloc] init];
+             [self.navigationController pushViewController:userInfo animated:NO];
+//               weakSelf.LoginState(YES);
+//              [weakSelf.navigationController popViewControllerAnimated:NO];
+         }else{
+              //weakSelf.LoginState(NO);
          }
      }];
  

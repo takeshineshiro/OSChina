@@ -16,3 +16,4 @@
 
 @property (nonatomic,assign) BOOL isLoginUser;
 @end
+

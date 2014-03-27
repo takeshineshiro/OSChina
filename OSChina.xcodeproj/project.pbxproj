@@ -80,6 +80,7 @@
 		C285F83618DCB4AE001F8006 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C285F82D18DCB4AE001F8006 /* whiteArrow.png */; };
 		C285F83718DCB4AE001F8006 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C285F82E18DCB4AE001F8006 /* whiteArrow@2x.png */; };
 		C285F83A18DCB59D001F8006 /* TableViewLoadMore.m in Sources */ = {isa = PBXBuildFile; fileRef = C285F83918DCB59D001F8006 /* TableViewLoadMore.m */; };
+		C28B02CF18E496F0006E7A1A /* LoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C28B02CE18E496F0006E7A1A /* LoginUser.m */; };
 		C2905AD318B3036200F970BB /* CMDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = C2905AD218B3036200F970BB /* CMDataStorage.m */; };
 		C293F66818D6F41B00020480 /* UncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C293F66718D6F41B00020480 /* UncaughtExceptionHandler.m */; };
 		C2A2F91318B25F7000694028 /* tweet_switch_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A2F91218B25F7000694028 /* tweet_switch_bg@2x.png */; };
@@ -263,6 +264,8 @@
 		C285F82E18DCB4AE001F8006 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		C285F83818DCB59D001F8006 /* TableViewLoadMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewLoadMore.h; sourceTree = "<group>"; };
 		C285F83918DCB59D001F8006 /* TableViewLoadMore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewLoadMore.m; sourceTree = "<group>"; };
+		C28B02CD18E496F0006E7A1A /* LoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUser.h; sourceTree = "<group>"; };
+		C28B02CE18E496F0006E7A1A /* LoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUser.m; sourceTree = "<group>"; };
 		C2905AD118B3036200F970BB /* CMDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDataStorage.h; sourceTree = "<group>"; };
 		C2905AD218B3036200F970BB /* CMDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDataStorage.m; sourceTree = "<group>"; };
 		C293F66618D6F41B00020480 /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
@@ -554,6 +557,8 @@
 			children = (
 				C27470AA18D8AD74009E9C24 /* NewsObject.h */,
 				C27470AB18D8AD74009E9C24 /* NewsObject.m */,
+				C28B02CD18E496F0006E7A1A /* LoginUser.h */,
+				C28B02CE18E496F0006E7A1A /* LoginUser.m */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -1178,6 +1183,7 @@
 				C2905AD318B3036200F970BB /* CMDataStorage.m in Sources */,
 				C250EDB018AB7FD700A6E20F /* UIImage+BxExtension.m in Sources */,
 				C285F82018DCB213001F8006 /* OSTableView.m in Sources */,
+				C28B02CF18E496F0006E7A1A /* LoginUser.m in Sources */,
 				C27470AC18D8AD74009E9C24 /* NewsObject.m in Sources */,
 				C2E3F06F187C4B0800919AE6 /* AppDelegate.m in Sources */,
 				18CC4C1B18E3CD7A00371DFF /* UserLoginViewController.m in Sources */,

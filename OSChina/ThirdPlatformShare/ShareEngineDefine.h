@@ -24,7 +24,7 @@ typedef enum
 #define kWeChatAppId        @"wxbe41ebca760466e"
 #define kWeChatAppKey       @"270e045bf66d6515309e13e71dceb707"
 
-#define kTcAppKey     @"801403753"
+#define kTcAppKey      @"801403753"
 #define kTcAppSecret  @"9e610eb9fd7043009053bbe9f2fbb89e"
 #define kTcRedirectURI             @"http://d.91dingdong.com/"
 

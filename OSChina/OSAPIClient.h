@@ -22,4 +22,5 @@ typedef void(^RequestResultBlocks)(id  resultDatas,NSError *error);
 -(void) getTweetListWithID:(NSInteger) tweetID PageIndex:(NSInteger) currIndex RequestResult:
 (void (^)(id resultDatas,NSInteger tweetCount,NSError *error)) blocks;
 -(void) userLoginName:(NSString*) userName passWord:(NSString*) password RequestResult:(RequestResultBlocks) blocks;
+-(void) fetchCurrUserInfo:(RequestResultBlocks) blocks;
 @end

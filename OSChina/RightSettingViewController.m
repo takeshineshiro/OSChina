@@ -10,7 +10,22 @@
 #import "NewsDetailViewController.h"
 #import "SideBarViewController.h"
 #import "UIView+MotionEffect.h"
-@implementation RightSettingViewController
+#import "UserLoginViewController.h"
+
+
+@interface userIslogin: NSObject{
+
+    BOOL isLogin;
+}
+
+@end
+@implementation userIslogin
+
+@end
+@implementation RightSettingViewController{
+
+    userIslogin *loginResult;
+}
 
 -(void)viewDidLoad{
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Sidebarbg"]];
@@ -19,9 +34,9 @@
     bgView.image = bgImage;
     [self.view addSubview:bgView];
     [bgView addCenterMotionEffectsXYWithOffset:25];
-//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissThisViewController)];
-//    [self.view addGestureRecognizer:tapGesture];
-    
+     loginResult= [[userIslogin alloc] init];
+    [loginResult setValue:[NSNumber numberWithBool:NO] forKey:@"isLogin"];
+    [loginResult addObserver:self forKeyPath:@"isLogin" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
     UIImageView *headIcon= [[UIImageView alloc] initWithFrame:CGRectMake(150, 75, 75, 75)];
     headIcon.image = [UIImage imageNamed:@"icon_user_portraits"];
     [self.view addSubview:headIcon];
@@ -30,9 +45,9 @@
     loginBtn.frame = CGRectMake(100, headIcon.bottom+20, 180, 40);
     loginBtn.titleLabel.textColor = [UIColor whiteColor];
     [loginBtn setTitle:@"用户登录" forState:UIControlStateNormal];
+    [loginBtn addTarget:self action:@selector(userLoginHandle) forControlEvents:UIControlEventTouchUpInside];
     [loginBtn setBackgroundImage:[UIImage imageNamed:@"btn_user_login"] forState:UIControlStateNormal];
     [self.view addSubview:loginBtn];
-    
     NSArray *userIcons =@[@"icon_user_collect",@"icon_user_collect",@"icon_user_collect",
                          @"icon_user_collect",@"icon_user_collect",@"icon_user_collect",@"icon_user_collect",@"icon_user_collect"];
     NSArray *userTitles= @[@"我的资料",@"我的动弹",@"@提到我",@"评论",@"最近动弹",@"留言",@"收藏",@"其他"];
@@ -42,10 +57,10 @@
                 break;
             }
             UIButton *userBtn= [UIButton buttonWithType:UIButtonTypeCustom];
-            userBtn.frame = CGRectMake(100+j*80, loginBtn.bottom+i*60, 100, 100);
+            userBtn.frame = CGRectMake(100+j*80, 230+i*60, 100, 40);
             userBtn.titleLabel.textColor = [UIColor whiteColor];
             userBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-            [userBtn setTitleEdgeInsets:UIEdgeInsetsMake(60.0,-90.0, 0.0,0.0)];
+            [userBtn setTitleEdgeInsets:UIEdgeInsetsMake(50.0,-90.0, 0.0,0.0)];
             [userBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0,0.0, 0.0,50.0)];
             [userBtn setTitle:userTitles[j+i*3] forState:UIControlStateNormal];
             [userBtn setImage:[UIImage imageNamed:userIcons[j+i*3]] forState:UIControlStateNormal];
@@ -56,16 +71,28 @@
     
 }
 
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"isLogin"]) {
+        if ([[loginResult valueForKey:@"isLogin"] intValue]) {
+           
+        }
+    }
+
+}
+
+-(void) userLoginHandle{
+    UserLoginViewController *user= [[UserLoginViewController alloc] initWithLoginResult:^(BOOL isLogin) {
+        [loginResult setValue:[NSNumber numberWithBool:isLogin] forKey:@"isLogin"];
+    }];
+    [self.navigationController pushViewController:user animated:NO];
+    [self.sidebarController.contentViewController.view setHidden:YES];
+
+}
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
     [self.sidebarController.contentViewController.view setHidden:NO];
 }
-- (void)dismissThisViewController
-{
-     NewsDetailViewController *news= [[NewsDetailViewController alloc] init];
-    [self.navigationController pushViewController:news animated:YES];
-    [self.sidebarController.contentViewController.view setHidden:YES];
-}
+
 -(void)viewWillDisappear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:NO];
 }

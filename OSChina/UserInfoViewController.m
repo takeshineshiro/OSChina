@@ -28,20 +28,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
-    if (_isLoginUser) {
-      _userTableView= [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.height-64) style:UITableViewStyleGrouped];
-    }else{
-       _userTableView= [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.height-64)];
-    }
+    _userTableView= [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.height-64) style:UITableViewStyleGrouped];
     _userTableView.delegate = self;
     _userTableView.dataSource = self;
-    if (_isLoginUser) {
-         _dataSoure = @[@"更换头像",@"加入时间",@"所在地区",@"开放平台",@"专长领域"];
-    }else{
-         _dataSoure = @[@"更换头像",@"加入时间",@"所在地区",@"开放平台",@"专长领域"];
-    }
-   
+    _dataSoure = @[@"更换头像",@"加入时间",@"所在地区",@"开放平台",@"专长领域"];
+    [self.view addSubview:_userTableView];
+    [[OSAPIClient shareClient] fetchCurrUserInfo:^(id resultDatas, NSError *error) {
+        
+    }];
 }
 
 
@@ -51,37 +45,28 @@
     if (!cell) {
         cell= [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    if (_isLoginUser) {
-        switch (indexPath.section) {
-            case 0:
-                cell.textLabel.text =_dataSoure[indexPath.row];
-                break;
-            case 1:{
-               cell.textLabel.text =_dataSoure[indexPath.row+1];
-            }
-                break;
-        }
-    }
+    cell.textLabel.text =_dataSoure[indexPath.row];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;{
-    if (_isLoginUser) {
+    
         return 2;
-    }
-    return 1;
+    
 }
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (_isLoginUser) {
-        switch (section) {
-            case 0:
-                return 1;
-                break;
-            default:
-                return 4;
-                break;
-        }
+    if (section ==0) {
+        return 1;
     }
-    return [_dataSoure count];
+    if (section == 1) {
+        return 4;
+    }
+    return 0;
+}
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section ==0) {
+        return 100;
+    }
+    return 50;
 }
 - (void)didReceiveMemoryWarning
 {

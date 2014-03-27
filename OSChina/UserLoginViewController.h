@@ -8,6 +8,9 @@
 
 #import "BaseViewController.h"
 
+typedef void(^isLoginSuccess)(BOOL isLogin);
 @interface UserLoginViewController : BaseViewController
 
+@property (nonatomic,strong) isLoginSuccess LoginState;
+-(id) initWithLoginResult:(isLoginSuccess)result;
 @end
