@@ -33,7 +33,7 @@
         self.text = text;
         self.image = image;
         if (handler) {
-            //self.handler = handler;
+            self.handler = handler;
         }
         
         [self setup];

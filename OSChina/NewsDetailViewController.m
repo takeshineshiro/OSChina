@@ -13,7 +13,8 @@
 #import "DTCoreText.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "ShareActivityView.h"
-@interface NewsDetailViewController ()<UIGestureRecognizerDelegate,DTAttributedTextContentViewDelegate,DTLazyImageViewDelegate>
+#import "ShareEngine.h"
+@interface NewsDetailViewController ()<UIGestureRecognizerDelegate,DTAttributedTextContentViewDelegate,DTLazyImageViewDelegate,ShareEngineDelegate>
 @property (nonatomic, strong) UIWebView *newsDetailWebView;
 @property (nonatomic, strong) NewsDetail *currNews;
 @property (nonatomic, strong) NSMutableSet *mediaPlayers;
@@ -88,18 +89,22 @@
         self.activityView.numberOfButtonPerLine = 6;
         
         ButtonView *bv = [[ButtonView alloc]initWithText:@"新浪微博" image:[UIImage imageNamed:@"icon_share_sinaweibo"] handler:^(ButtonView *buttonView){
-            
+            [[ShareEngine sharedInstance] loginWithType:sinaWeibo];
         }];
         
         [self.activityView addButtonView:bv];
         
         bv = [[ButtonView alloc]initWithText:@"腾讯微博" image:[UIImage imageNamed:@"icon_share_txweibo"] handler:^(ButtonView *buttonView){
+            NSLog(@"%@",self.navigationController);
+            [[ShareEngine sharedInstance] tencentWeiBoLogin:self];
+            [ShareEngine sharedInstance].delegate = self;
+            //[self tx];
             
         }];
         [self.activityView addButtonView:bv];
         
         bv = [[ButtonView alloc]initWithText:@"微信好友" image:[UIImage imageNamed:@"icon_share_weixin"] handler:^(ButtonView *buttonView){
-            
+           [[ShareEngine sharedInstance] sendWeChatMessage:@"test特吐舌头" WithUrl:@"www.baidu.com" WithType:weChat];
         }];
         [self.activityView addButtonView:bv];
         
@@ -114,11 +119,35 @@
     
     [self.activityView show];
 
- 
-
 }
 
+-(void) tx{
 
+    WeiboApi* tcWeiboApi= [[WeiboApi alloc]initWithAppKey:kTcAppKey andSecret:kTcAppSecret andRedirectUri:kTcRedirectURI andAuthModeFlag:0 andCachePolicy:0];
+    
+    [tcWeiboApi loginWithDelegate:self andRootController:self];
+}
+- (void)DidAuthFailWithError:(NSError *)error
+{
+    NSString *str = [[NSString alloc] initWithFormat:@"get token error, errcode = %@",error.userInfo];
+    
+//    //注意回到主线程，有些回调并不在主线程中，所以这里必须回到主线程
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        
+//        [self showMsg:str];
+//    });
+//    [str release];
+
+}
+-(void)shareEngineAuthFail:(ThirdPlatformType)weibotype error:(NSError *)error{
+    if (weibotype == tcWeibo) {
+        NSArray *views= self.navigationController.viewControllers;
+//        [self.navigationController pushViewController:views[1] animated:YES];
+//        [views enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//            NSLog(@"%@",obj);
+//        }];
+    }
+}
 - (NSAttributedString *)_attributedStringForSnippetUsingiOS6Attributes:(NSString *)html
 {
 	

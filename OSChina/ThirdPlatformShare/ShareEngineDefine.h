@@ -1,11 +1,11 @@
+
 //
 //  weiboDefine.h
-//  ringvisit
+//  OSChina
 //
-//  Created by 陈欢 on 13-8-15.
-//  Copyright (c) 2013年 guoty. All rights reserved.
+//  Created by baxiang on 14-1-23.
+//  Copyright (c) 2014年 巴翔. All rights reserved.
 //
-
 #ifndef ringvisit_weiboDefine_h
 #define ringvisit_weiboDefine_h
 
@@ -15,11 +15,11 @@ typedef enum
     tcWeibo,
     weChat,
     weChatFriend
-}WeiboType;
+}ThirdPlatformType;
 
-#define kSinaAppKey         @"1062363663"
-#define kSinaSecret  @"90476c816329463b6aba87a3d3cf2342"
-#define kSinaRedirectURI    @"http://d.91dingdong.com/"
+#define kSinaAppKey       @"3218682351"
+#define kSinaSecret       @"0fe435f28bde6e73e8151e44b271fee2"
+#define kSinaRedirectURI    @"https://api.weibo.com/oauth2/default.html"
 
 #define kWeChatAppId        @"wxbe41ebca760466e"
 #define kWeChatAppKey       @"270e045bf66d6515309e13e71dceb707"

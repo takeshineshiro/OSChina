@@ -13,14 +13,15 @@
 #import "SideBarViewController.h"
 #import "UncaughtExceptionHandler.h"
 #import "BaseNavigationController.h"
+#import "ShareEngine.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-     [UncaughtExceptionHandler setDefaultHandler];
+    [[ShareEngine sharedInstance] registerApp];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     NewsViewController *news= [[NewsViewController alloc] init];
-    BaseNavigationController *contentViewController= [[BaseNavigationController alloc] initWithRootViewController:news];
+    UINavigationController *contentViewController= [[UINavigationController alloc] initWithRootViewController:news];
     LeftMenuViewController *menu = [[LeftMenuViewController alloc] init];
     RightSettingViewController *setting  = [[RightSettingViewController alloc] init];
     UINavigationController *settingViewController= [[UINavigationController alloc] initWithRootViewController:setting];
@@ -58,5 +59,13 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+//{
+//    return [[ShareEngine sharedInstance] handleOpenURL:url];
+//}
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [[ShareEngine sharedInstance] handleOpenURL:url sourceApplication:sourceApplication];
+}
 @end

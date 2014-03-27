@@ -1,17 +1,22 @@
 //
 //  ShareEngine.m
-//  ShareEngineExample
+//  OSChina
 //
-//  Created by 陈欢 on 13-10-8.
-//  Copyright (c) 2013年 陈欢. All rights reserved.
+//  Created by baxiang on 14-1-23.
+//  Copyright (c) 2014年 巴翔. All rights reserved.
 //
 
 #import "ShareEngine.h"
 
+
+@interface ShareEngine()
+@property (nonatomic, strong) UIViewController *tcWeiboVC;
+@end
 @implementation ShareEngine
 
-static ShareEngine *sharedSingleton_ = nil;
-
+/**
+ *  社交分享单例
+ */
 + (ShareEngine *) sharedInstance
 {
 
@@ -23,8 +28,9 @@ static ShareEngine *sharedSingleton_ = nil;
     return shareInstance;
 }
 
-
-
+/**
+ *  初始化 第三方平台的key
+ */
 - (id)init
 {
     self = [super init];
@@ -33,8 +39,9 @@ static ShareEngine *sharedSingleton_ = nil;
         //腾讯微博注册
         tcWeiboApi= [[WeiboApi alloc]initWithAppKey:kTcAppKey andSecret:kTcAppSecret andRedirectUri:kTcRedirectURI andAuthModeFlag:0 andCachePolicy:0] ;
         //新浪微博注册
-        //[WeiboSDK enableDebugMode:YES];
+        [WeiboSDK enableDebugMode:YES];
         [WeiboSDK registerApp:kSinaAppKey];
+        [WXApi registerApp:kWeChatAppId];
     }
     return self;
 }
@@ -44,20 +51,21 @@ static ShareEngine *sharedSingleton_ = nil;
     self.delegate = nil;
 }
 
-- (BOOL)handleOpenURL:(NSURL *)url
+- (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
 {
     BOOL weiboRet = NO;
     //处理新浪分享
-    if ([url.absoluteString hasPrefix:@"sina"])
+    if ([url.absoluteString hasPrefix:@"wb"])
     {
+        
         weiboRet = [WeiboSDK handleOpenURL:url delegate:self];
     }
-    // 处理腾讯分享
-    else if([url.absoluteString hasPrefix:@"wb"])
-    {
-        weiboRet = [tcWeiboApi handleOpenURL:url];
-    }
-    else
+    // 处理腾讯微博暂时无法SSO分享
+//    else if([url.absoluteString hasPrefix:@"wb"])
+//    {
+//        weiboRet = [tcWeiboApi handleOpenURL:url];
+//    }
+    else if ([url.absoluteString hasSuffix:@"wx"])
     {
         weiboRet = [WXApi handleOpenURL:url delegate:self];
     }
@@ -84,7 +92,7 @@ static ShareEngine *sharedSingleton_ = nil;
  *
  *  @return 是否登录
  */
-- (BOOL)isLogin:(WeiboType)weiboType
+- (BOOL)isLogin:(ThirdPlatformType)weiboType
 {
     if (sinaWeibo == weiboType)
     {
@@ -98,7 +106,7 @@ static ShareEngine *sharedSingleton_ = nil;
     
 }
 
-- (void)loginWithType:(WeiboType)weiboType
+- (void)loginWithType:(ThirdPlatformType)weiboType
 {
     if (sinaWeibo == weiboType)
     {
@@ -109,16 +117,22 @@ static ShareEngine *sharedSingleton_ = nil;
     }
     else if(tcWeibo == weiboType)
     {
-        [tcWeiboApi loginWithDelegate:self andRootController:_tcWeiboVC];
+        //[tcWeiboApi loginWithDelegate:self andRootController:_tcWeiboVC];
     }
    
 }
+
+-(void)tencentWeiBoLogin:(UIViewController*) currController{
+   [tcWeiboApi loginWithDelegate:self andRootController:currController];
+    _tcWeiboVC = currController;
+}
+
 /**
  *  第三平台登出
  *
  *  @param weiboType 第三平台类型
  */
-- (void)logOutWithType:(WeiboType)weiboType
+- (void)logOutWithType:(ThirdPlatformType)weiboType
 {
     if (sinaWeibo == weiboType)
     {
@@ -134,7 +148,7 @@ static ShareEngine *sharedSingleton_ = nil;
     }
 }
 
-- (void)sendWeChatMessage:(NSString*)message WithUrl:(NSString*)url WithType:(WeiboType)weiboType
+- (void)sendWeChatMessage:(NSString*)message WithUrl:(NSString*)url WithType:(ThirdPlatformType)weiboType
 {
     if(weChat == weiboType)
     {
@@ -148,7 +162,7 @@ static ShareEngine *sharedSingleton_ = nil;
     }
 }
 
-- (void)sendShareMessage:(NSString*)message WithType:(WeiboType)weiboType
+- (void)sendShareMessage:(NSString*)message WithType:(ThirdPlatformType)weiboType
 {
     if (NO == [self isLogin:weiboType])
     {
@@ -167,7 +181,7 @@ static ShareEngine *sharedSingleton_ = nil;
 }
 
 #pragma mark - weibo respon
-- (void)loginSuccess:(WeiboType)weibotype
+- (void)loginSuccess:(ThirdPlatformType)weibotype
 {
     if (nil != self.delegate && [self.delegate respondsToSelector:@selector(shareEngineDidLogIn:)])
     {
@@ -175,7 +189,7 @@ static ShareEngine *sharedSingleton_ = nil;
     }
 }
 
-- (void)logOutSuccess:(WeiboType)weibotype
+- (void)logOutSuccess:(ThirdPlatformType)weibotype
 {
     if (nil != self.delegate && [self.delegate respondsToSelector:@selector(shareEngineDidLogOut:)])
     {
@@ -251,7 +265,7 @@ static ShareEngine *sharedSingleton_ = nil;
         message.title = @"叮咚上门";
     }
     message.description = appMessage;
-    [message setThumbImage:[UIImage imageNamed:@"ico"]];
+    //[message setThumbImage:[UIImage imageNamed:@"ico"]];
     
     WXWebpageObject *ext = [WXWebpageObject object];
     ext.webpageUrl = appUrl;
@@ -368,6 +382,13 @@ static ShareEngine *sharedSingleton_ = nil;
     //    }
 }
 
+- (void)didReceiveWeiboRequest:(WBBaseRequest *)request{
+    if ([request isKindOfClass:WBProvideMessageForWeiboRequest.class])
+    {
+      
+    }
+}
+
 /**
  *  新浪微博授权的回调
  *
@@ -390,18 +411,11 @@ static ShareEngine *sharedSingleton_ = nil;
     {
         NSString *title = @"认证结果";
         NSString *message = [NSString stringWithFormat:@"响应状态: %d\nresponse.userId: %@\nresponse.accessToken: %@\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",(int)response.statusCode,[(WBAuthorizeResponse *)response userID], [(WBAuthorizeResponse *)response accessToken], response.userInfo, response.requestUserInfo];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:nil
-                                              cancelButtonTitle:@"确定"
-                                              otherButtonTitles:nil];
+        // 当前sina 微博的token;
+        NSLog(@"%@",[(WBAuthorizeResponse *)response accessToken]);
         
-       // self.wbtoken = [(WBAuthorizeResponse *)response accessToken];
-        
-       
     }
 }
-
 
 
 /**
@@ -411,19 +425,12 @@ static ShareEngine *sharedSingleton_ = nil;
  */
 - (void)DidAuthRefreshed:(WeiboApiObject *)wbobj
 {
-    
-    
-    //UISwitch
     NSString *str = [[NSString alloc]initWithFormat:@"accesstoken = %@\r openid = %@\r appkey=%@ \r appsecret=%@\r",wbobj.accessToken, wbobj.openid, wbobj.appKey, wbobj.appSecret];
     
     NSLog(@"result = %@",str);
-    
     //注意回到主线程，有些回调并不在主线程中，所以这里必须回到主线程
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-       // [self showMsg:str];
     });
-    //[str release];
     
 }
 
@@ -436,6 +443,7 @@ static ShareEngine *sharedSingleton_ = nil;
 {
     NSString *str = [[NSString alloc] initWithFormat:@"refresh token error, errcode = %@",error.userInfo];
     
+   
     //注意回到主线程，有些回调并不在主线程中，所以这里必须回到主线程
     dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -460,10 +468,7 @@ static ShareEngine *sharedSingleton_ = nil;
         
         //[self showMsg:str];
     });
-    
-    
-    // NSLog(@"after add pic");
-   // [str release];
+
 }
 
 /**
@@ -471,9 +476,9 @@ static ShareEngine *sharedSingleton_ = nil;
  * @param   INPUT   wbapi   weiboapi 对象，取消授权后，授权信息会被清空
  * @return  无返回
  */
-- (void)DidAuthCanceled:(WeiboApi *)wbapi_
+- (void)DidAuthCanceled:(WeiboApi *)wbapi
 {
-    
+   
 }
 
 /**
@@ -483,14 +488,10 @@ static ShareEngine *sharedSingleton_ = nil;
  */
 - (void)DidAuthFailWithError:(NSError *)error
 {
-    NSString *str = [[NSString alloc] initWithFormat:@"get token error, errcode = %@",error.userInfo];
-    
-    //注意回到主线程，有些回调并不在主线程中，所以这里必须回到主线程
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        //[self showMsg:str];
-    });
-   }
+    if ([self.delegate respondsToSelector:@selector(shareEngineAuthFail:error:)]) {
+        [_delegate shareEngineAuthFail:tcWeibo error:error];
+    }
+}
 
 /**
  * @brief   授权成功后的回调
@@ -503,11 +504,8 @@ static ShareEngine *sharedSingleton_ = nil;
     //注意回到主线程，有些回调并不在主线程中，所以这里必须回到主线程
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        //[self showMsg:str];
     });
-    //[str release];
 }
-
 
 
 
