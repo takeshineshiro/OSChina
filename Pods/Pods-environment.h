@@ -12,12 +12,6 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking 3
 
-// CocoaSecurity
-#define COCOAPODS_POD_AVAILABLE_CocoaSecurity
-#define COCOAPODS_VERSION_MAJOR_CocoaSecurity 1
-#define COCOAPODS_VERSION_MINOR_CocoaSecurity 2
-#define COCOAPODS_VERSION_PATCH_CocoaSecurity 3
-
 // DTCoreText
 #define COCOAPODS_POD_AVAILABLE_DTCoreText
 #define COCOAPODS_VERSION_MAJOR_DTCoreText 1
@@ -42,27 +36,21 @@
 #define COCOAPODS_VERSION_MINOR_DTFoundation_UIKit 6
 #define COCOAPODS_VERSION_PATCH_DTFoundation_UIKit 2
 
-// NSUserDefaults-AESEncryptor
-#define COCOAPODS_POD_AVAILABLE_NSUserDefaults_AESEncryptor
-#define COCOAPODS_VERSION_MAJOR_NSUserDefaults_AESEncryptor 0
-#define COCOAPODS_VERSION_MINOR_NSUserDefaults_AESEncryptor 0
-#define COCOAPODS_VERSION_PATCH_NSUserDefaults_AESEncryptor 4
-
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3
-#define COCOAPODS_VERSION_MINOR_SDWebImage 6
-#define COCOAPODS_VERSION_PATCH_SDWebImage 0
+#define COCOAPODS_VERSION_MINOR_SDWebImage 5
+#define COCOAPODS_VERSION_PATCH_SDWebImage 4
 
 // SDWebImage/Core
 #define COCOAPODS_POD_AVAILABLE_SDWebImage_Core
 #define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
-#define COCOAPODS_VERSION_MINOR_SDWebImage_Core 6
-#define COCOAPODS_VERSION_PATCH_SDWebImage_Core 0
+#define COCOAPODS_VERSION_MINOR_SDWebImage_Core 5
+#define COCOAPODS_VERSION_PATCH_SDWebImage_Core 4
 
 // TTTAttributedLabel
 #define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel
 #define COCOAPODS_VERSION_MAJOR_TTTAttributedLabel 1
 #define COCOAPODS_VERSION_MINOR_TTTAttributedLabel 9
-#define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 2
+#define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 1
 
