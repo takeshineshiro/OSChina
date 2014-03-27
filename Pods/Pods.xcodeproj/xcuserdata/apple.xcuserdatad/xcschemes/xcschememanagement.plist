@@ -7,37 +7,77 @@
 		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
-		<key>Pods-DTCoreText.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
-		<key>Pods-DTFoundation.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
-		<key>Pods-SDWebImage.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>Pods-TTTAttributedLabel.xcscheme</key>
+		<key>Pods-CocoaSecurity.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
+		<key>Pods-DTCoreText.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Pods-DTFoundation.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Pods-NSUserDefaults-AESEncryptor.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Pods-SDWebImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Pods-TTTAttributedLabel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>04436C9466714A77808F3EC9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0E53B27871FA4342920466DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>239284D76DAC40308C8AB650</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2D21CBDF0CD34F839188D25C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4F92EA9483D243158B994F14</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>536672117865433E8D513175</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>61B549DB3E594E4E8B187D99</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,12 +112,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>D9B622CB386F4B42BD61CDE2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>EE1C30CAE9EB4D8AA9E2F9C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>EEF05E5A1E834BB08E6E048C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F9D90714DAD549789ADE82E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
