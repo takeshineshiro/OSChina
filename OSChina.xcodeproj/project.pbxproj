@@ -49,6 +49,9 @@
 		C250EDBA18ABD36A00A6E20F /* BlogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250EDB918ABD36A00A6E20F /* BlogCell.m */; };
 		C2524FAB18D83796005DECE4 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2524FAA18D83796005DECE4 /* BaseNavigationController.m */; };
 		C2524FB418D8459C005DECE4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2524FB318D8459C005DECE4 /* CoreText.framework */; };
+		C253B5A718E320D2005E2D63 /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C253B5A618E320D2005E2D63 /* UserLoginViewController.m */; };
+		C253B5AB18E32723005E2D63 /* bg_login_textfiled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C253B5AA18E32723005E2D63 /* bg_login_textfiled@2x.png */; };
+		C253B5AE18E34456005E2D63 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C253B5AD18E34456005E2D63 /* UserInfoViewController.m */; };
 		C25FF326189018AA00D34053 /* icon_navi_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C25FF325189018AA00D34053 /* icon_navi_menu@2x.png */; };
 		C25FF328189018B900D34053 /* icon_navi_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C25FF327189018B900D34053 /* icon_navi_setting@2x.png */; };
 		C25FF32E189028EC00D34053 /* OSAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C25FF32D189028EC00D34053 /* OSAPIClient.m */; };
@@ -210,6 +213,11 @@
 		C2524FA918D83796005DECE4 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		C2524FAA18D83796005DECE4 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		C2524FB318D8459C005DECE4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		C253B5A518E320D2005E2D63 /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginViewController.h; sourceTree = "<group>"; };
+		C253B5A618E320D2005E2D63 /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginViewController.m; sourceTree = "<group>"; };
+		C253B5AA18E32723005E2D63 /* bg_login_textfiled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_login_textfiled@2x.png"; sourceTree = "<group>"; };
+		C253B5AC18E34456005E2D63 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		C253B5AD18E34456005E2D63 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		C25FF325189018AA00D34053 /* icon_navi_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_navi_menu@2x.png"; sourceTree = "<group>"; };
 		C25FF327189018B900D34053 /* icon_navi_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_navi_setting@2x.png"; sourceTree = "<group>"; };
 		C25FF32918901BC100D34053 /* MacroDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroDefines.h; sourceTree = "<group>"; };
@@ -395,6 +403,7 @@
 		18CF797218E2C82700DDC763 /* ThirdPlatformPShare */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				18CF797318E2C82700DDC763 /* ShareEngine.h */,
 				18CF797418E2C82700DDC763 /* ShareEngine.m */,
 				18CF797518E2C82700DDC763 /* ShareEngineDefine.h */,
@@ -444,6 +453,15 @@
 			name = background;
 			sourceTree = "<group>";
 		};
+=======
+				C253B5AA18E32723005E2D63 /* bg_login_textfiled@2x.png */,
+				C21F735418E1E7F400A3669D /* bg_comment@2x.png */,
+				C21F735618E1EBA600A3669D /* bg_comment_textfiled@2x.png */,
+			);
+			name = background;
+			sourceTree = "<group>";
+		};
+>>>>>>> FETCH_HEAD
 		C2394B4E18A932DD006B9C59 /* Utiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -494,6 +512,17 @@
 				C2E8C9A718AD287A0011B5C4 /* BlogDetailViewController.m */,
 			);
 			name = Blog;
+			sourceTree = "<group>";
+		};
+		C253B5A418E320A0005E2D63 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				C253B5A518E320D2005E2D63 /* UserLoginViewController.h */,
+				C253B5A618E320D2005E2D63 /* UserLoginViewController.m */,
+				C253B5AC18E34456005E2D63 /* UserInfoViewController.h */,
+				C253B5AD18E34456005E2D63 /* UserInfoViewController.m */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		C25FF31E1890153600D34053 /* icon */ = {
@@ -851,6 +880,7 @@
 		C2F51219188EC7390048AE7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C253B5A418E320A0005E2D63 /* User */,
 				C2EBD45D18B0BBBD004ECC94 /* Base */,
 				C2EBD45318B06A8E004ECC94 /* Community */,
 				C250EDB118ABC3AF00A6E20F /* Blog */,
@@ -895,7 +925,10 @@
 		C2F5121C188EC7AD0048AE7F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				18CF797218E2C82700DDC763 /* ThirdPlatformPShare */,
+=======
+>>>>>>> FETCH_HEAD
 				C285F82118DCB4AE001F8006 /* EGOTableViewPullRefresh */,
 				C285F81A18DC9A16001F8006 /* AMAttributedHighlightLabel */,
 				C27F621618D9DA6E00DD251E /* SVPullToRefresh */,
@@ -1072,7 +1105,10 @@
 				C2A2F91318B25F7000694028 /* tweet_switch_bg@2x.png in Resources */,
 				C21F736018E1F2A700A3669D /* icon_share_txweibo@2x.png in Resources */,
 				C2C338BF18DF3BD4007688CE /* icon_user_portraits@2x.png in Resources */,
+<<<<<<< HEAD
 				18CF798518E2C82800DDC763 /* WeiboSDK.bundle in Resources */,
+=======
+>>>>>>> FETCH_HEAD
 				C285F83218DCB4AE001F8006 /* blueArrow.png in Resources */,
 				C23EBF551892DD1C00793896 /* IconCalendar@2x.png in Resources */,
 				C285F83118DCB4AE001F8006 /* blackArrow@2x.png in Resources */,
@@ -1083,6 +1119,10 @@
 				C2EBD47118B11E44004ECC94 /* Default@2x.png in Resources */,
 				C25FF328189018B900D34053 /* icon_navi_setting@2x.png in Resources */,
 				C21F735518E1E7F400A3669D /* bg_comment@2x.png in Resources */,
+<<<<<<< HEAD
+=======
+				C253B5AB18E32723005E2D63 /* bg_login_textfiled@2x.png in Resources */,
+>>>>>>> FETCH_HEAD
 				C27F622118DA074000DD251E /* icon_back@2x.png in Resources */,
 				C285F83518DCB4AE001F8006 /* grayArrow@2x.png in Resources */,
 				C25FF326189018AA00D34053 /* icon_navi_menu@2x.png in Resources */,
@@ -1147,7 +1187,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2EBD47F18B13019004ECC94 /* SliderSwitch.m in Sources */,
+<<<<<<< HEAD
 				18CF798318E2C82800DDC763 /* ShareEngine.m in Sources */,
+=======
+>>>>>>> FETCH_HEAD
 				C2EBD46B18B111D3004ECC94 /* PostCell.m in Sources */,
 				C27FAA1718BF43F0000AB671 /* NSString+HtmlString.m in Sources */,
 				C2F51220188EC8F90048AE7F /* SideBarViewController.m in Sources */,
@@ -1159,7 +1202,10 @@
 				C250EDA218AB6AA300A6E20F /* NSString+BxExtension.m in Sources */,
 				C250EDBA18ABD36A00A6E20F /* BlogCell.m in Sources */,
 				C285F82F18DCB4AE001F8006 /* EGORefreshTableHeaderView.m in Sources */,
+<<<<<<< HEAD
 				18CF799118E2E1C700DDC763 /* BlogObject.m in Sources */,
+=======
+>>>>>>> FETCH_HEAD
 				C2905AD318B3036200F970BB /* CMDataStorage.m in Sources */,
 				C250EDB018AB7FD700A6E20F /* UIImage+BxExtension.m in Sources */,
 				C285F82018DCB213001F8006 /* OSTableView.m in Sources */,
@@ -1174,6 +1220,7 @@
 				C2FED29418AA3419003D5854 /* UIView+Extension.m in Sources */,
 				C2E8C9AB18AD28BB0011B5C4 /* NewsDetail.m in Sources */,
 				C285F81D18DC9A16001F8006 /* AMAttributedHighlightLabel.m in Sources */,
+				C253B5AE18E34456005E2D63 /* UserInfoViewController.m in Sources */,
 				C250EDAA18AB77AE00A6E20F /* NSDictionary+BxExtension.m in Sources */,
 				C2F51226188ECCB80048AE7F /* SidebarLuvocracyAnimation.m in Sources */,
 				C23EBF4D1892D27700793896 /* TweetViewController.m in Sources */,
@@ -1191,6 +1238,10 @@
 				C2E8C9A818AD287A0011B5C4 /* BlogDetailViewController.m in Sources */,
 				C27470A318D8AB3B009E9C24 /* STDbObject.m in Sources */,
 				C2F5122A188ED0540048AE7F /* LeftMenuViewController.m in Sources */,
+<<<<<<< HEAD
+=======
+				C253B5A718E320D2005E2D63 /* UserLoginViewController.m in Sources */,
+>>>>>>> FETCH_HEAD
 				C27F621D18D9DA6E00DD251E /* UIScrollView+SVPullToRefresh.m in Sources */,
 				C27FAA2118BF4C4E000AB671 /* RegexKitLite.m in Sources */,
 				C250EDB418ABC4D800A6E20F /* BlogViewController.m in Sources */,

@@ -16,7 +16,11 @@
 #import "Post.h"
 #import "Tweet.h"
 #import "NewsObject.h"
+<<<<<<< HEAD
 #import "BlogObject.h"
+=======
+#import "NSUserDefaults+AESEncryptor.h"
+>>>>>>> FETCH_HEAD
 static NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 /*资讯列表*/
 static NSString *const kNewsListURLString = @"news_list";
@@ -27,6 +31,7 @@ static NSString *const kBlogDetailURLString = @"blog_detail";
 /*讨论区列表*/
 static NSString *const kCommunityListURLString = @"post_list";
 static NSString *const kTweetListURLString = @"tweet_list";
+static NSString *const kLoginURLString = @"login_validate";
 @implementation OSAPIClient
 
 
@@ -205,5 +210,27 @@ static NSString *const kTweetListURLString = @"tweet_list";
         
     }];
 
+}
+
+-(void) userLoginName:(NSString*) userName passWord:(NSString*) password RequestResult:(RequestResultBlocks) blocks{
+    
+    NSMutableDictionary *paramters= [NSMutableDictionary dictionaryWithCapacity:3];
+    [paramters setObject:userName forKey:@"username"];
+    [paramters setObject:password forKey:@"pwd"];
+    [paramters setObject:@"1" forKey:@"keep_login"];
+    [self postPath:kLoginURLString parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"login --%@",operation.responseString);
+        NSDictionary *dict= [[XMLParser shareInstance] parseData:operation.responseData];
+        NSDictionary *result =  [XMLParser getDataAtPath:@"oschina.result" fromResultObject:dict];
+        if ([[result objectForKey:@"errorCode"] integerValue]) {
+            NSDictionary *userDict = [XMLParser getDataAtPath:@"oschina.user" fromResultObject:dict];
+            [[NSUserDefaults standardUserDefaults] setAESKey:KAESKEY];
+            [[NSUserDefaults standardUserDefaults] encryptValue:userDict [@"name"] withKey:KUserName];
+            [[NSUserDefaults standardUserDefaults] encryptValue:userDict [@"uid"] withKey:KUserID];
+        }
+        blocks([result objectForKey:@"errorCode"],nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 @end
