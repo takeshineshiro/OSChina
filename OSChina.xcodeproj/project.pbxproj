@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		18049E6418D98EF500D89735 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18049E6318D98EF500D89735 /* HMSegmentedControl.m */; };
 		18049E6718D9951700D89735 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18049E6618D9951700D89735 /* BaseViewController.m */; };
+		18CC4C1B18E3CD7A00371DFF /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC4C1818E3CD7A00371DFF /* UserLoginViewController.m */; };
+		18CC4C1C18E3CD7A00371DFF /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC4C1A18E3CD7A00371DFF /* UserInfoViewController.m */; };
+		18CC4C1E18E3CDA700371DFF /* bg_login_textfiled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CC4C1D18E3CDA700371DFF /* bg_login_textfiled@2x.png */; };
 		18CF798318E2C82800DDC763 /* ShareEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CF797418E2C82700DDC763 /* ShareEngine.m */; };
 		18CF798418E2C82800DDC763 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CF797718E2C82700DDC763 /* libWeiboSDK.a */; };
 		18CF798518E2C82800DDC763 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18CF797818E2C82700DDC763 /* WeiboSDK.bundle */; };
@@ -146,6 +149,11 @@
 		18049E6318D98EF500D89735 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		18049E6518D9951700D89735 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		18049E6618D9951700D89735 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		18CC4C1718E3CD7A00371DFF /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginViewController.h; sourceTree = "<group>"; };
+		18CC4C1818E3CD7A00371DFF /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginViewController.m; sourceTree = "<group>"; };
+		18CC4C1918E3CD7A00371DFF /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		18CC4C1A18E3CD7A00371DFF /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		18CC4C1D18E3CDA700371DFF /* bg_login_textfiled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_login_textfiled@2x.png"; sourceTree = "<group>"; };
 		18CF797318E2C82700DDC763 /* ShareEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareEngine.h; sourceTree = "<group>"; };
 		18CF797418E2C82700DDC763 /* ShareEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareEngine.m; sourceTree = "<group>"; };
 		18CF797518E2C82700DDC763 /* ShareEngineDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareEngineDefine.h; sourceTree = "<group>"; };
@@ -389,6 +397,13 @@
 			path = SegmentedControl;
 			sourceTree = "<group>";
 		};
+		18CC4C1618E3CD5700371DFF /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
 		18CF797218E2C82700DDC763 /* ThirdPlatformPShare */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,6 +450,7 @@
 		C21F735318E1E7E400A3669D /* background */ = {
 			isa = PBXGroup;
 			children = (
+				18CC4C1D18E3CDA700371DFF /* bg_login_textfiled@2x.png */,
 				C21F735418E1E7F400A3669D /* bg_comment@2x.png */,
 				C21F735618E1EBA600A3669D /* bg_comment_textfiled@2x.png */,
 			);
@@ -848,6 +864,11 @@
 		C2F51219188EC7390048AE7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				18CC4C1618E3CD5700371DFF /* User */,
+				18CC4C1718E3CD7A00371DFF /* UserLoginViewController.h */,
+				18CC4C1818E3CD7A00371DFF /* UserLoginViewController.m */,
+				18CC4C1918E3CD7A00371DFF /* UserInfoViewController.h */,
+				18CC4C1A18E3CD7A00371DFF /* UserInfoViewController.m */,
 				C2EBD45D18B0BBBD004ECC94 /* Base */,
 				C2EBD45318B06A8E004ECC94 /* Community */,
 				C250EDB118ABC3AF00A6E20F /* Blog */,
@@ -1088,6 +1109,7 @@
 				C285F83018DCB4AE001F8006 /* blackArrow.png in Resources */,
 				C2F51238188EE1480048AE7F /* Navibarbg@2x.png in Resources */,
 				C23EBF4F1892DC5700793896 /* IconHome@2x.png in Resources */,
+				18CC4C1E18E3CDA700371DFF /* bg_login_textfiled@2x.png in Resources */,
 				C285F83718DCB4AE001F8006 /* whiteArrow@2x.png in Resources */,
 				C285F83318DCB4AE001F8006 /* blueArrow@2x.png in Resources */,
 			);
@@ -1159,6 +1181,7 @@
 				C285F82018DCB213001F8006 /* OSTableView.m in Sources */,
 				C27470AC18D8AD74009E9C24 /* NewsObject.m in Sources */,
 				C2E3F06F187C4B0800919AE6 /* AppDelegate.m in Sources */,
+				18CC4C1B18E3CD7A00371DFF /* UserLoginViewController.m in Sources */,
 				C2E3F06B187C4B0800919AE6 /* main.m in Sources */,
 				C2E5733618C06C5E00B7D703 /* LoadMoreFootView.m in Sources */,
 				18049E6418D98EF500D89735 /* HMSegmentedControl.m in Sources */,
@@ -1169,6 +1192,7 @@
 				C2E8C9AB18AD28BB0011B5C4 /* NewsDetail.m in Sources */,
 				C285F81D18DC9A16001F8006 /* AMAttributedHighlightLabel.m in Sources */,
 				C250EDAA18AB77AE00A6E20F /* NSDictionary+BxExtension.m in Sources */,
+				18CC4C1C18E3CD7A00371DFF /* UserInfoViewController.m in Sources */,
 				C2F51226188ECCB80048AE7F /* SidebarLuvocracyAnimation.m in Sources */,
 				C23EBF4D1892D27700793896 /* TweetViewController.m in Sources */,
 				C250EDA718AB6B4900A6E20F /* NSUserDefaults+BxTension.m in Sources */,
