@@ -250,6 +250,8 @@ static NSString *const kMyInfURLoString = @"my_information";
     [paramters setObject:userID forKey:@"uid"];
     [self getPath:kMyInfURLoString parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"login --%@",operation.responseString);
+        
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
