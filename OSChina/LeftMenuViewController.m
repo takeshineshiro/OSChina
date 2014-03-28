@@ -35,7 +35,7 @@
      bgImage.image = bg;
      [self.view addSubview:bgImage];
      [bgImage addCenterMotionEffectsXYWithOffset:20];
-     UITableView *MemuTable= [[UITableView alloc] initWithFrame:CGRectMake(30, 50, 200, self.view.frame.size.height)];
+     UITableView *MemuTable= [[UITableView alloc] initWithFrame:CGRectMake(30, 80, 200, self.view.frame.size.height)];
      MemuTable.delegate =self;
      MemuTable.dataSource = self;
      MemuTable.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -45,8 +45,8 @@
      MemuTable.backgroundColor = [UIColor clearColor];
      //[MemuTable addCenterMotionEffectsXYWithOffset:30];
      [self.view addSubview:MemuTable];
-     _menuIcons  =@[@"IconHome.png",@"IconCalendar.png",@"IconProfile.png",@"IconProfile.png",@"IconSettings.png"];
-     _menuTitles = @[@"资讯",@"博客",@"讨论",@"动弹",@"软件"];
+     _menuIcons  =@[@"icon_search.png",@"icon_news.png",@"icon_blog.png",@"icon_discuss.png",@"icon_tweet.png",@"icon_software.png"];
+     _menuTitles = @[@"搜索",@"资讯",@"博客",@"讨论",@"动弹",@"软件"];
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -79,26 +79,30 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView  deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row) {
+            
         case 0:{
+        }
+        break;
+        case 1:{
             UINavigationController *contentViewController= [[BaseNavigationController alloc] initWithRootViewController:[[NewsViewController alloc] init]];
             [self.sidebarController setContentViewController:contentViewController];
             [self.sidebarController dismissSidebarViewController];
             break;
         }
-        case 1:{
+        case 2:{
             UINavigationController *contentViewController= [[BaseNavigationController alloc] initWithRootViewController:[[BlogViewController alloc] init]];
             [self.sidebarController setContentViewController:contentViewController];
             [self.sidebarController dismissSidebarViewController];
             break;
         }
        
-        case 2:{
+        case 3:{
             UINavigationController *contentViewController= [[BaseNavigationController alloc] initWithRootViewController:[[CommunityViewController alloc] init]];
             [self.sidebarController setContentViewController:contentViewController];
             [self.sidebarController dismissSidebarViewController];
             break;
         }
-        case 3:{
+        case 4:{
             UINavigationController *contentViewController= [[BaseNavigationController alloc] initWithRootViewController:[[TweetViewController alloc] init]];
             [self.sidebarController setContentViewController:contentViewController];
             [self.sidebarController dismissSidebarViewController];

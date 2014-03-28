@@ -46,7 +46,7 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.exclusiveTouch = YES;
-    [button setImage:[UIImage imageNamed:@"icon_navi_menu"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"icon_menu"] forState:UIControlStateNormal];
     button.frame = CGRectMake(0, 0, 50, 40);
     [button setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
     [button addTarget:self action:@selector(leftButtonClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -56,7 +56,7 @@
 
     UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     settingBtn.exclusiveTouch = YES;
-    [settingBtn setImage:[UIImage imageNamed:@"icon_navi_setting"] forState:UIControlStateNormal];
+    [settingBtn setImage:[UIImage imageNamed:@"icon_myinfo"] forState:UIControlStateNormal];
     settingBtn.frame = CGRectMake(0, 0, 50, 40);
     [settingBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
     [settingBtn addTarget:self action:@selector(rightButtonClicked) forControlEvents:UIControlEventTouchUpInside];

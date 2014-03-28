@@ -25,7 +25,7 @@
      UIImageView *replyCountIcon;
 
      UILabel * authorLable;
-     TTTAttributedLabel * bodyLable;
+     UILabel * bodyLable;
      UILabel * createdTime;
      UILabel * repliesCountLabel;
     
@@ -44,12 +44,10 @@
         authorLable.textColor = RGB(69, 176, 222);
         [self.contentView addSubview:authorLable];
        
-        bodyLable = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(55,40,250,200)];
+        bodyLable = [[UILabel alloc] initWithFrame:CGRectZero];
         bodyLable.backgroundColor = [UIColor clearColor];
-        bodyLable.numberOfLines = 0;
         bodyLable.textColor = [UIColor blackColor];
-        bodyLable.lineBreakMode = NSLineBreakByCharWrapping;
-        bodyLable.font = [UIFont systemFontOfSize:15.0f];
+        bodyLable.font = [UIFont systemFontOfSize:14.0f];
 		[self.contentView addSubview:bodyLable];
         
         createdTime = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -89,19 +87,18 @@
     repliesCountLabel.frame =CGRectMake(replyCountIcon.right+3, replyCountIcon.top, 45, 20);
     repliesCountLabel.textAlignment = NSTextAlignmentLeft;
     repliesCountLabel.text = _tweet.commentCount;
-    bodyLable.numberOfLines = 0;
-    bodyLable.lineBreakMode = NSLineBreakByWordWrapping;
     UIFont *font = [UIFont systemFontOfSize:14.0f];
     CGSize size = CGSizeMake(260,MAXFLOAT);
     //CGSize labelsize = [_tweet.body sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
-    NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          font, NSFontAttributeName,
-                                          nil];
-    CGRect frame = [_tweet.body boundingRectWithSize:size
-                                            options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
-                                         attributes:attributesDictionary
-                                            context:nil];
-    bodyLable.frame = CGRectMake(headIcon.right,headIcon.bottom+5,frame.size.width,frame.size.height);
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+    CGSize frame = [_tweet.body boundingRectWithSize:size
+                                            options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                         attributes:attributes
+                                            context:nil].size;
+    bodyLable.numberOfLines = 0;
+    bodyLable.frame = CGRectMake(headIcon.right,headIcon.bottom,frame.width,frame.height);
     [bodyLable setText:_tweet.body];
     
     if (_tweet.imgSmall&&[_tweet.imgSmall isKindOfClass:[NSString class]]) {
@@ -146,21 +143,21 @@
 
 }
 +(CGFloat) getCurrTweetCellHeight:(Tweet*) tweet{
-    CGFloat cellHeight = 55;
+    CGFloat cellHeight = 70;
     CGSize size = CGSizeMake(260,MAXFLOAT);
-    UIFont *font = [UIFont systemFontOfSize:15.0f];
+    UIFont *font = [UIFont systemFontOfSize:14.0f];
     //CGSize optimumSize = [tweet.body sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
-    NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          font, NSFontAttributeName,
-                                          nil];
-    CGRect frame = [tweet.body boundingRectWithSize:size
-                                      options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
-                                   attributes:attributesDictionary
-                                      context:nil];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+    CGSize frame = [tweet.body boundingRectWithSize:size
+                                      options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                   attributes:attributes
+                                      context:nil].size;
     if (tweet.imgSmall&&[tweet.imgSmall isKindOfClass:[NSString class]]) {
        cellHeight+=125;
     }
-    return frame.size.height+cellHeight;
+    return cellHeight+ceilf(frame.height);
     
 }
 

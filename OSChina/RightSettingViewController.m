@@ -48,9 +48,9 @@
     [loginBtn addTarget:self action:@selector(userLoginHandle) forControlEvents:UIControlEventTouchUpInside];
     [loginBtn setBackgroundImage:[UIImage imageNamed:@"btn_user_login"] forState:UIControlStateNormal];
     [self.view addSubview:loginBtn];
-    NSArray *userIcons =@[@"icon_user_collect",@"icon_user_collect",@"icon_user_collect",
-                         @"icon_user_collect",@"icon_user_collect",@"icon_user_collect",@"icon_user_collect",@"icon_user_collect"];
-    NSArray *userTitles= @[@"我的资料",@"我的动弹",@"@提到我",@"评论",@"最近动弹",@"留言",@"收藏",@"其他"];
+    NSArray *userIcons =@[@"icon_myinfo",@"icon_mytweet",@"icon_pushmy",
+                         @"icon_comment",@"icon_latest_tweet",@"icon_leavemessage",@"icon_mycollect",@"icon_other"];
+    NSArray *userTitles= @[@"我的资料",@"我的动弹",@"@提到我",@"评论",@"最近动弹",@"留言",@"我的收藏",@"其他"];
     for (int i =0; i<3; i++) {
         for (int j=0; j<3; j++) {
             if (j+i*3>=[userIcons count]) {
