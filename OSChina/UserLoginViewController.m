@@ -92,8 +92,8 @@
     passwordTextFiled.text  = @"yangyu1989";
      [[OSAPIClient shareClient] userLoginName:userTextFiled.text passWord:passwordTextFiled.text RequestResult:^(id resultDatas, NSError *error) {
          if ([resultDatas isKindOfClass:[NSString class]]&&[resultDatas isEqualToString:@"1"]) {
-                UserInfoViewController  *userInfo = [[UserInfoViewController alloc] init];
-             [weakSelf.navigationController pushViewController:userInfo animated:NO];
+             UserInfoViewController  *userInfo = [[UserInfoViewController alloc] init];
+             [weakSelf.navigationController pushViewController:userInfo animated:YES];
 //               weakSelf.LoginState(YES);
 //              [weakSelf.navigationController popViewControllerAnimated:NO];
          }else{

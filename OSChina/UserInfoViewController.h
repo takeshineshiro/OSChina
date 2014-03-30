@@ -14,6 +14,5 @@
 
 @interface UserInfoViewController : BaseViewController
 
-@property (nonatomic,assign) BOOL isLoginUser;
 @end
 

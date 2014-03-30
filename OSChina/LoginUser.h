@@ -7,6 +7,7 @@
 //
 
 #import "STDbObject.h"
+//#import "LKDBHelper.h"
 /*<name><![CDATA[羊羽1989]]></name>
 <portrait><![CDATA[http://static.oschina.net/uploads/user/430/860718_100.jpg?t=1395854105000]]></portrait>
                    <jointime>2012-11-01 09:51:49</jointime>
@@ -18,17 +19,18 @@
                    <fanscount>0</fanscount>
                    <followerscount>0</followerscount>
 */
-@interface LoginUser : STDbObject
+@interface LoginUser : NSObject
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSString *portrait;
 @property (nonatomic,strong) NSString *jointime;
-@property (nonatomic,strong) NSString *from;
-@property (nonatomic,assign) NSInteger gender;
+@property (nonatomic,strong) NSString *fromDistrict;
+@property (nonatomic,strong) NSString *gender;
 @property (nonatomic,strong) NSString *devplatform;
 @property (nonatomic,strong) NSString *expertise;
-@property (nonatomic,assign) NSInteger favoritecount;
-@property (nonatomic,assign) NSInteger fanscount;
-@property (nonatomic,assign) NSInteger followerscount;
+@property (nonatomic,strong) NSString *favoritecount;
+@property (nonatomic,strong) NSString *fanscount;
+@property (nonatomic,strong) NSString *followerscount;
 
 -(id)initWithDictionary:(NSDictionary *) dict;
+//-(void) save;
 @end

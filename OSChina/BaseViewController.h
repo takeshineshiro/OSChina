@@ -11,4 +11,5 @@
 @interface BaseViewController : UIViewController
 - (void)setTitle:(NSString *)title;
 -(void) setBackbuttonItemStyle;
+-(void) setBackbuttonItem:(SEL) action;
 @end

@@ -70,6 +70,20 @@
     UIBarButtonItem *backItem= [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem = backItem;
 }
+-(void) setBackbuttonItem:(SEL) action{
+    UIButton *backBtn= [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame =CGRectMake(0, 0, 60, 44);
+    backBtn.titleLabel.font = [UIFont systemFontOfSize:17.0f];
+    [backBtn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    [backBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
+    [backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+    [backBtn setAdjustsImageWhenHighlighted:NO];
+    [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [backBtn  setTitle:@"返回" forState:UIControlStateNormal];
+    UIBarButtonItem *backItem= [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = backItem;
+}
 
 -(void)popCurrViewController{
     [self.navigationController popViewControllerAnimated:YES];

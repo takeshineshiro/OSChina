@@ -10,16 +10,24 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.6.2):
     - DTFoundation/Core
+  - FMDB (2.2):
+    - FMDB/standard
+  - FMDB/common (2.2)
+  - FMDB/standard (2.2):
+    - FMDB/common
+  - LKDBHelper (1.4):
+    - FMDB
   - NSUserDefaults-AESEncryptor (0.0.4):
     - CocoaSecurity (~> 1.2.2)
   - SDWebImage (3.6):
     - SDWebImage/Core
   - SDWebImage/Core (3.6)
-  - TTTAttributedLabel (1.9.2)
+  - TTTAttributedLabel (1.9.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.0)
   - DTCoreText
+  - LKDBHelper
   - NSUserDefaults-AESEncryptor
   - SDWebImage
   - TTTAttributedLabel
@@ -29,8 +37,10 @@ SPEC CHECKSUMS:
   CocoaSecurity: 9c82f530dc5b0516b04cc2ed4c2f5cd90f25352d
   DTCoreText: 4d56bb74ff05a3b2415fc15fccc4b5689ed3119c
   DTFoundation: 7c69990fa3cb7655cafa95ab59c3fcea014460f0
+  FMDB: 97472cfacf0d9e445e915704fb43b4b142799c36
+  LKDBHelper: ab1741c564f6ac6ff1bd9ef4bd32a14850a25dc4
   NSUserDefaults-AESEncryptor: f53c00dbe0f67ed2c66b4b937c4d2d8b131284e0
   SDWebImage: 7eb273e54ca8a2e506ad9bd5e80c35b2a4d7c95e
-  TTTAttributedLabel: 7bc9542fccee787f3e1147e597c14cd64e2f6b19
+  TTTAttributedLabel: e65b9dd6aadb409ca07cb16034e94537e4ddab36
 
 COCOAPODS: 0.29.0

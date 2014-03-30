@@ -17,6 +17,8 @@
 #import "Tweet.h"
 #import "NewsObject.h"
 #import "NSUserDefaults+AESEncryptor.h"
+#import "LoginUser.h"
+#import "User.h"
 static NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 /*资讯列表*/
 static NSString *const kNewsListURLString = @"news_list";
@@ -237,7 +239,7 @@ static NSString *const kMyInfURLoString = @"my_information";
     }];
 }
 
-//#define api_my_information @"http://www.oschina.net/action/api/my_information"
+
 /**
  *  获取登录的用户信息
  *
@@ -250,11 +252,15 @@ static NSString *const kMyInfURLoString = @"my_information";
     [paramters setObject:userID forKey:@"uid"];
     [self getPath:kMyInfURLoString parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"login --%@",operation.responseString);
-        
-        
+        NSDictionary *dict= [[XMLParser shareInstance] parseData:operation.responseData];
+        NSDictionary *result =  [XMLParser getDataAtPath:@"oschina.user" fromResultObject:dict];
+        LoginUser *user =[[LoginUser alloc] initWithDictionary:result];
+
+        blocks(user,nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
 
 }
+
 @end

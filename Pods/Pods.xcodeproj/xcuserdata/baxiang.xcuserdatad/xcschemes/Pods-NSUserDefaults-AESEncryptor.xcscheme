@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F88E8E3D4C0B4609BCD4CDCD"
+               BlueprintIdentifier = "D04F545A92194A7A8516F14C"
                BuildableName = "libPods-NSUserDefaults-AESEncryptor.a"
                BlueprintName = "Pods-NSUserDefaults-AESEncryptor"
                ReferencedContainer = "container:Pods.xcodeproj">
